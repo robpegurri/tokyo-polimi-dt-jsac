@@ -27,7 +27,7 @@ PROJECT_DIR = BASE_DIR.parent
 
 # Graph generation (import after PROJECT_DIR is defined)
 sys.path.insert(0, str(PROJECT_DIR))
-from graph_generator import generate_graphs, create_rssi_filter, create_sinr_filter, create_throughput_filter, create_composite_filter  # noqa: E402
+from topology.graph_generator import generate_graphs, create_rssi_filter, create_sinr_filter, create_throughput_filter, create_composite_filter  # noqa: E402
 
 current_settings: AppSettings = load_settings()
 

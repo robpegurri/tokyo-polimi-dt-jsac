@@ -167,6 +167,6 @@ def startup():
         print("     [WARNING] Frequency not set. Defaulting to 28 GHz.")
         sionna_structure["frequency"] = 28e9
 
-    print(f"Setup complete. Working at {sionna_structure["scene"].frequency / 1e9} GHz, bandwidth {sionna_structure["scene"].bandwidth / 1e6} MHz.")
+    print(f'Setup complete. Working at {sionna_structure["scene"].frequency / 1e9} GHz, bandwidth {sionna_structure["scene"].bandwidth / 1e6} MHz.')
 
     return sionna_structure
