@@ -1,3 +1,5 @@
 van3twin-py/datasets/
 van3twin-py/simulation_dataset.csv
+van3twin-py/simulation_output.json
 __pycache__/
+*.py[cod]

@@ -6,6 +6,8 @@ sionna_structure = dict()
 ray_tracing_time_ms = 0
 frame_num = 0
 
+sionna_structure["run_type"] = "simulation" # or "real-time"
+
 def setup_scene(file_name, frequency, bandwidth):
     # Import scene
     sionna_structure["scene"] = load_scene(filename=file_name, merge_shapes=True, merge_shapes_exclude_regex="car")
@@ -105,11 +107,13 @@ def startup():
     sionna_structure["last_path_loss_requested"] = None
 
     # Set up UDP socket
-    udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    udp_socket.bind(("0.0.0.0", port))  # External server configuration
-    if sionna_structure["verbose"]:
-        print(f"Expecting UDP messages from Tokyo Digital Twin on UDP/{port}")
-
+    if sionna_structure["run_type"] == "real-time":
+        udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        udp_socket.bind(("0.0.0.0", port))  # External server configuration
+        if sionna_structure["verbose"]:
+            print(f"Expecting UDP messages from Tokyo Digital Twin on UDP/{port}")
+    else:
+        udp_socket = None
     sionna_structure["udp_socket"] = udp_socket
 
     # Location databases and caches
