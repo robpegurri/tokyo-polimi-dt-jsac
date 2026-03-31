@@ -1,2 +1,3 @@
 van3twin-py/datasets/
 van3twin-py/simulation_dataset.csv
+__pycache__/
