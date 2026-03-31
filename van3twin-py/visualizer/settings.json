@@ -1,0 +1,32 @@
+{
+  "center_lat": 35.6041,
+  "center_lon": 139.6823,
+  "origin_x": 1.0,
+  "origin_y": -10.0,
+  "watch_path": "simulation_dataset.csv",
+  "watch_interval_ms": 100,
+  "playback_speed": 1.0,
+  "link_direction": "both",
+  "thresholds": {
+    "rssi_dbm": [
+      -70.0,
+      -85.0,
+      -100.0
+    ],
+    "sinr_eff_db": [
+      20.0,
+      10.0,
+      0.0
+    ],
+    "throughput_kbps": [
+      100.0,
+      50.0,
+      5.0
+    ],
+    "bler": [
+      0.05,
+      0.15,
+      0.3
+    ]
+  }
+}

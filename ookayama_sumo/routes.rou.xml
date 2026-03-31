@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-02-19 16:29:19.420398 by Eclipse SUMO randomTrips.py v1.26.0
+<configuration>
+    <net-file value="ookayama.net.xml"/>
+    <output-trip-file value="osm.trips.xml"/>
+    <trip-attributes value="departLane=&quot;best&quot; departSpeed=&quot;max&quot; type=&quot;reroutingType&quot;"/>
+    <end value="40.0"/>
+    <period value="1.0"/>
+</configuration>
+-->
+
+<!-- generated on 2026-02-19T16:29:19.416050+01:00 by Eclipse SUMO duarouter 1.26.0
+<duarouterConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="ookayama.net.xml"/>
+        <route-files value="osm.trips.xml"/>
+    </input>
+
+    <output>
+        <output-file value="routes.rou.xml"/>
+        <alternatives-output value="NUL"/>
+    </output>
+
+    <time>
+        <begin value="0.0"/>
+        <end value="40.0"/>
+    </time>
+
+    <report>
+        <no-warnings value="true"/>
+        <ignore-errors value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+</duarouterConfiguration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vehicle id="0" type="reroutingType" depart="0.00" departLane="best" departSpeed="max">
+        <route edges="188118873 188118875#0 188118875#1 -188170311 -188048107#1"/>
+    </vehicle>
+    <vehicle id="1" type="reroutingType" depart="1.00" departLane="best" departSpeed="max">
+        <route edges="-188660020#3 90181669 188170310 -188170311"/>
+    </vehicle>
+    <vehicle id="2" type="reroutingType" depart="2.00" departLane="best" departSpeed="max">
+        <route edges="188660020#2 -188660020#2 -188660020#1 85970004 -85949608#1 85970009#1 85970009#2 188051766 188118873"/>
+    </vehicle>
+    <vehicle id="3" type="reroutingType" depart="3.00" departLane="best" departSpeed="max">
+        <route edges="85970009#1 85970009#2 85970009#3 85970009#4 188118875#0 188106458#0 -188048107#4 -188106440"/>
+    </vehicle>
+    <vehicle id="4" type="reroutingType" depart="4.00" departLane="best" departSpeed="max">
+        <route edges="-85970009#4 85970009#4 188118875#0 188118875#1 -188170311 -188048107#1"/>
+    </vehicle>
+    <vehicle id="5" type="reroutingType" depart="5.00" departLane="best" departSpeed="max">
+        <route edges="-188170311 -188048107#1 -188048107#0 188048107#0"/>
+    </vehicle>
+    <vehicle id="6" type="reroutingType" depart="6.00" departLane="best" departSpeed="max">
+        <route edges="-188048107#1 -188048107#0 188660020#6 -188118875#2"/>
+    </vehicle>
+    <vehicle id="7" type="reroutingType" depart="7.00" departLane="best" departSpeed="max">
+        <route edges="188118875#0 188118875#1 -188170311 188048107#3"/>
+    </vehicle>
+    <vehicle id="8" type="reroutingType" depart="8.00" departLane="best" departSpeed="max">
+        <route edges="-188170311 188048107#3 -188106440 188106440"/>
+    </vehicle>
+    <vehicle id="9" type="reroutingType" depart="9.00" departLane="best" departSpeed="max">
+        <route edges="188660020#5 188048107#0 -188048107#0"/>
+    </vehicle>
+    <vehicle id="10" type="reroutingType" depart="10.00" departLane="best" departSpeed="max">
+        <route edges="188660020#5 188048107#0 188048107#1 188170310 -188118875#1 188118875#1"/>
+    </vehicle>
+    <vehicle id="11" type="reroutingType" depart="11.00" departLane="best" departSpeed="max">
+        <route edges="-85949608#1 85970009#1 85970009#2 85970009#3 85970009#4 188118875#0 -188118875#0"/>
+    </vehicle>
+    <vehicle id="12" type="reroutingType" depart="12.00" departLane="best" departSpeed="max">
+        <route edges="85970009#4 188118875#0 188118875#1 188118875#2 -188660020#6 -188660020#5"/>
+    </vehicle>
+    <vehicle id="13" type="reroutingType" depart="13.00" departLane="best" departSpeed="max">
+        <route edges="-188106440 188660020#2 90181669 -188048107#1 -188106457"/>
+    </vehicle>
+    <vehicle id="14" type="reroutingType" depart="14.00" departLane="best" departSpeed="max">
+        <route edges="28013465 188118873 188118875#0 188106458#0 188106458#1 188660020#1 188106440"/>
+    </vehicle>
+    <vehicle id="15" type="reroutingType" depart="15.00" departLane="best" departSpeed="max">
+        <route edges="188660020#5 188048107#0 188048107#1 188170310 188118875#2"/>
+    </vehicle>
+    <vehicle id="16" type="reroutingType" depart="16.00" departLane="best" departSpeed="max">
+        <route edges="188051766 188118873 -85970009#4 85970009#4"/>
+    </vehicle>
+    <vehicle id="17" type="reroutingType" depart="17.00" departLane="best" departSpeed="max">
+        <route edges="-85970009#2 85970009#2 85970009#3 85970009#4 188118875#0 188106458#0 -188048107#4 188048107#4"/>
+    </vehicle>
+    <vehicle id="18" type="reroutingType" depart="18.00" departLane="best" departSpeed="max">
+        <route edges="188660020#6 -188660020#6 -188660020#5 -188660020#4 188106457"/>
+    </vehicle>
+    <vehicle id="19" type="reroutingType" depart="19.00" departLane="best" departSpeed="max">
+        <route edges="85949608#1 -85949608#1 85970009#1 85970009#2 188051766"/>
+    </vehicle>
+    <vehicle id="20" type="reroutingType" depart="20.00" departLane="best" departSpeed="max">
+        <route edges="188170310 -188118875#1 188106458#0 -188048107#4 -188048107#3"/>
+    </vehicle>
+    <vehicle id="21" type="reroutingType" depart="21.00" departLane="best" departSpeed="max">
+        <route edges="-188660020#1 188660020#1 188660020#2 188660020#3 -188660020#3"/>
+    </vehicle>
+    <vehicle id="22" type="reroutingType" depart="22.00" departLane="best" departSpeed="max">
+        <route edges="-188106440 -188660020#1 85970004 -85949608#1 85970009#1 85970009#2 188051766 -188194446"/>
+    </vehicle>
+    <vehicle id="23" type="reroutingType" depart="23.00" departLane="best" departSpeed="max">
+        <route edges="-188106457 -188660020#3 -188660020#2"/>
+    </vehicle>
+    <vehicle id="24" type="reroutingType" depart="24.00" departLane="best" departSpeed="max">
+        <route edges="188118873 188118875#0 188106458#0 188106458#1 85970004 -85949608#1"/>
+    </vehicle>
+    <vehicle id="25" type="reroutingType" depart="25.00" departLane="best" departSpeed="max">
+        <route edges="-85970009#1 85970009#1 85970009#2 85970009#3 85970009#4 188118875#0 188118875#1 -188170311"/>
+    </vehicle>
+    <vehicle id="26" type="reroutingType" depart="26.00" departLane="best" departSpeed="max">
+        <route edges="-188660020#3 -188660020#2 -188660020#1 85970004 -85949608#1 85970009#1 85970009#2"/>
+    </vehicle>
+    <vehicle id="27" type="reroutingType" depart="27.00" departLane="best" departSpeed="max">
+        <route edges="188118875#0 188106458#0 -188048107#4 -188048107#3 -90181669 188660020#3 188106457"/>
+    </vehicle>
+    <vehicle id="28" type="reroutingType" depart="28.00" departLane="best" departSpeed="max">
+        <route edges="-188118875#1 188118875#1 188118875#2"/>
+    </vehicle>
+    <vehicle id="29" type="reroutingType" depart="29.00" departLane="best" departSpeed="max">
+        <route edges="-188118875#0 -85970009#4 -85970009#3 -85970009#2 -85970009#1"/>
+    </vehicle>
+    <vehicle id="30" type="reroutingType" depart="30.00" departLane="best" departSpeed="max">
+        <route edges="90181669 188170310 -188118875#1 188106458#0"/>
+    </vehicle>
+    <vehicle id="31" type="reroutingType" depart="31.00" departLane="best" departSpeed="max">
+        <route edges="188106440 188048107#4 -188106458#0 -188118875#0 188118875#0"/>
+    </vehicle>
+    <vehicle id="32" type="reroutingType" depart="32.00" departLane="best" departSpeed="max">
+        <route edges="28013465 188118873 188118875#0 188106458#0 -188048107#4 -188106440 188660020#2"/>
+    </vehicle>
+    <vehicle id="33" type="reroutingType" depart="33.00" departLane="best" departSpeed="max">
+        <route edges="-188660020#1 -188106458#1 -188048107#4 -188048107#3 -188048107#1"/>
+    </vehicle>
+    <vehicle id="34" type="reroutingType" depart="34.00" departLane="best" departSpeed="max">
+        <route edges="-188660020#5 -188660020#4 -188660020#3 -188660020#2"/>
+    </vehicle>
+    <vehicle id="35" type="reroutingType" depart="35.00" departLane="best" departSpeed="max">
+        <route edges="-188170311 188048107#3 -188106440 -188660020#1 85970004 -85949608#1 85970009#1 85970009#2"/>
+    </vehicle>
+    <vehicle id="36" type="reroutingType" depart="36.00" departLane="best" departSpeed="max">
+        <route edges="85970004 -85949608#1 85970009#1 85970009#2 85970009#3 85970009#4 188118875#0 188118875#1 188118875#2 -188660020#6 -188660020#5 -188660020#4"/>
+    </vehicle>
+    <vehicle id="37" type="reroutingType" depart="37.00" departLane="best" departSpeed="max">
+        <route edges="188118875#0 -188118875#0 -85970009#4 -85970009#3 -85970009#2 -85970009#1"/>
+    </vehicle>
+    <vehicle id="38" type="reroutingType" depart="38.00" departLane="best" departSpeed="max">
+        <route edges="85970009#2 -85970009#2 -85970009#1 85949608#1 -85970094"/>
+    </vehicle>
+    <vehicle id="39" type="reroutingType" depart="39.00" departLane="best" departSpeed="max">
+        <route edges="-188660020#3 -188660020#2 -188660020#1"/>
+    </vehicle>
+</routes>

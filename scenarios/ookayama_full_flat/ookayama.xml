@@ -1,0 +1,3039 @@
+<scene version="2.1.0">
+
+<!-- Defaults, these can be set via the command line: -Darg=value -->
+
+
+<!-- Camera and Rendering Parameters -->
+
+	<integrator type="path" id="elm__0" name="elm__0">
+		<integer name="max_depth" value="12"/>
+	</integrator>
+
+<!-- Materials -->
+
+	<bsdf type="twosided" id="mat-itu_concrete" name="mat-itu_concrete">
+		<bsdf type="principled" name="bsdf">
+			<rgb value="0.600000 0.600000 0.580000" name="base_color"/>
+			<float name="spec_tint" value="0.000000"/>
+			<float name="spec_trans" value="0.000000"/>
+			<float name="metallic" value="0.000000"/>
+			<float name="anisotropic" value="0.000000"/>
+			<float name="roughness" value="0.722500"/>
+			<float name="sheen" value="0.000000"/>
+			<float name="sheen_tint" value="0.500000"/>
+			<float name="clearcoat" value="0.000000"/>
+			<float name="clearcoat_gloss" value="0.000900"/>
+			<float name="specular" value="0.500000"/>
+		</bsdf>
+	</bsdf>
+
+<!-- Emitters -->
+
+
+<!-- Shapes -->
+
+	<shape type="ply" id="mesh-_1_mesh" name="mesh-_1_mesh">
+		<string name="filename" value="meshes/_1_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_2_mesh" name="mesh-_2_mesh">
+		<string name="filename" value="meshes/_2_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_3_mesh" name="mesh-_3_mesh">
+		<string name="filename" value="meshes/_3_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_4_mesh" name="mesh-_4_mesh">
+		<string name="filename" value="meshes/_4_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_5_mesh" name="mesh-_5_mesh">
+		<string name="filename" value="meshes/_5_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_6_mesh" name="mesh-_6_mesh">
+		<string name="filename" value="meshes/_6_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_7_mesh" name="mesh-_7_mesh">
+		<string name="filename" value="meshes/_7_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_8_mesh" name="mesh-_8_mesh">
+		<string name="filename" value="meshes/_8_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_9_mesh" name="mesh-_9_mesh">
+		<string name="filename" value="meshes/_9_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_10_mesh" name="mesh-_10_mesh">
+		<string name="filename" value="meshes/_10_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_11_mesh" name="mesh-_11_mesh">
+		<string name="filename" value="meshes/_11_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_12_mesh" name="mesh-_12_mesh">
+		<string name="filename" value="meshes/_12_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_13_mesh" name="mesh-_13_mesh">
+		<string name="filename" value="meshes/_13_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_14_mesh" name="mesh-_14_mesh">
+		<string name="filename" value="meshes/_14_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_15_mesh" name="mesh-_15_mesh">
+		<string name="filename" value="meshes/_15_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_16_mesh" name="mesh-_16_mesh">
+		<string name="filename" value="meshes/_16_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_17_mesh" name="mesh-_17_mesh">
+		<string name="filename" value="meshes/_17_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_18_mesh" name="mesh-_18_mesh">
+		<string name="filename" value="meshes/_18_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_19_mesh" name="mesh-_19_mesh">
+		<string name="filename" value="meshes/_19_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_20_mesh" name="mesh-_20_mesh">
+		<string name="filename" value="meshes/_20_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_21_mesh" name="mesh-_21_mesh">
+		<string name="filename" value="meshes/_21_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_22_mesh" name="mesh-_22_mesh">
+		<string name="filename" value="meshes/_22_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_23_mesh" name="mesh-_23_mesh">
+		<string name="filename" value="meshes/_23_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_24_mesh" name="mesh-_24_mesh">
+		<string name="filename" value="meshes/_24_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_25_mesh" name="mesh-_25_mesh">
+		<string name="filename" value="meshes/_25_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_26_mesh" name="mesh-_26_mesh">
+		<string name="filename" value="meshes/_26_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_27_mesh" name="mesh-_27_mesh">
+		<string name="filename" value="meshes/_27_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_28_mesh" name="mesh-_28_mesh">
+		<string name="filename" value="meshes/_28_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_29_mesh" name="mesh-_29_mesh">
+		<string name="filename" value="meshes/_29_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_30_mesh" name="mesh-_30_mesh">
+		<string name="filename" value="meshes/_30_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_31_mesh" name="mesh-_31_mesh">
+		<string name="filename" value="meshes/_31_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_32_mesh" name="mesh-_32_mesh">
+		<string name="filename" value="meshes/_32_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_33_mesh" name="mesh-_33_mesh">
+		<string name="filename" value="meshes/_33_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_34_mesh" name="mesh-_34_mesh">
+		<string name="filename" value="meshes/_34_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_35_mesh" name="mesh-_35_mesh">
+		<string name="filename" value="meshes/_35_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_36_mesh" name="mesh-_36_mesh">
+		<string name="filename" value="meshes/_36_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_37_mesh" name="mesh-_37_mesh">
+		<string name="filename" value="meshes/_37_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_38_mesh" name="mesh-_38_mesh">
+		<string name="filename" value="meshes/_38_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_39_mesh" name="mesh-_39_mesh">
+		<string name="filename" value="meshes/_39_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_40_mesh" name="mesh-_40_mesh">
+		<string name="filename" value="meshes/_40_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_41_mesh" name="mesh-_41_mesh">
+		<string name="filename" value="meshes/_41_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_42_mesh" name="mesh-_42_mesh">
+		<string name="filename" value="meshes/_42_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_43_mesh" name="mesh-_43_mesh">
+		<string name="filename" value="meshes/_43_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_44_mesh" name="mesh-_44_mesh">
+		<string name="filename" value="meshes/_44_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_45_mesh" name="mesh-_45_mesh">
+		<string name="filename" value="meshes/_45_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_46_mesh" name="mesh-_46_mesh">
+		<string name="filename" value="meshes/_46_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_47_mesh" name="mesh-_47_mesh">
+		<string name="filename" value="meshes/_47_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_48_mesh" name="mesh-_48_mesh">
+		<string name="filename" value="meshes/_48_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_49_mesh" name="mesh-_49_mesh">
+		<string name="filename" value="meshes/_49_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_50_mesh" name="mesh-_50_mesh">
+		<string name="filename" value="meshes/_50_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_51_mesh" name="mesh-_51_mesh">
+		<string name="filename" value="meshes/_51_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_52_mesh" name="mesh-_52_mesh">
+		<string name="filename" value="meshes/_52_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_53_mesh" name="mesh-_53_mesh">
+		<string name="filename" value="meshes/_53_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_54_mesh" name="mesh-_54_mesh">
+		<string name="filename" value="meshes/_54_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_55_mesh" name="mesh-_55_mesh">
+		<string name="filename" value="meshes/_55_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_56_mesh" name="mesh-_56_mesh">
+		<string name="filename" value="meshes/_56_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_57_mesh" name="mesh-_57_mesh">
+		<string name="filename" value="meshes/_57_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_58_mesh" name="mesh-_58_mesh">
+		<string name="filename" value="meshes/_58_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_59_mesh" name="mesh-_59_mesh">
+		<string name="filename" value="meshes/_59_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_60_mesh" name="mesh-_60_mesh">
+		<string name="filename" value="meshes/_60_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_61_mesh" name="mesh-_61_mesh">
+		<string name="filename" value="meshes/_61_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_62_mesh" name="mesh-_62_mesh">
+		<string name="filename" value="meshes/_62_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_63_mesh" name="mesh-_63_mesh">
+		<string name="filename" value="meshes/_63_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_64_mesh" name="mesh-_64_mesh">
+		<string name="filename" value="meshes/_64_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_65_mesh" name="mesh-_65_mesh">
+		<string name="filename" value="meshes/_65_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_66_mesh" name="mesh-_66_mesh">
+		<string name="filename" value="meshes/_66_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_67_mesh" name="mesh-_67_mesh">
+		<string name="filename" value="meshes/_67_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_68_mesh" name="mesh-_68_mesh">
+		<string name="filename" value="meshes/_68_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_69_mesh" name="mesh-_69_mesh">
+		<string name="filename" value="meshes/_69_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_70_mesh" name="mesh-_70_mesh">
+		<string name="filename" value="meshes/_70_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_71_mesh" name="mesh-_71_mesh">
+		<string name="filename" value="meshes/_71_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_72_mesh" name="mesh-_72_mesh">
+		<string name="filename" value="meshes/_72_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_73_mesh" name="mesh-_73_mesh">
+		<string name="filename" value="meshes/_73_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_74_mesh" name="mesh-_74_mesh">
+		<string name="filename" value="meshes/_74_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_75_mesh" name="mesh-_75_mesh">
+		<string name="filename" value="meshes/_75_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_76_mesh" name="mesh-_76_mesh">
+		<string name="filename" value="meshes/_76_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_77_mesh" name="mesh-_77_mesh">
+		<string name="filename" value="meshes/_77_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_78_mesh" name="mesh-_78_mesh">
+		<string name="filename" value="meshes/_78_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_79_mesh" name="mesh-_79_mesh">
+		<string name="filename" value="meshes/_79_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_80_mesh" name="mesh-_80_mesh">
+		<string name="filename" value="meshes/_80_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_81_mesh" name="mesh-_81_mesh">
+		<string name="filename" value="meshes/_81_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_82_mesh" name="mesh-_82_mesh">
+		<string name="filename" value="meshes/_82_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_83_mesh" name="mesh-_83_mesh">
+		<string name="filename" value="meshes/_83_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_84_mesh" name="mesh-_84_mesh">
+		<string name="filename" value="meshes/_84_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_85_mesh" name="mesh-_85_mesh">
+		<string name="filename" value="meshes/_85_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_86_mesh" name="mesh-_86_mesh">
+		<string name="filename" value="meshes/_86_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_87_mesh" name="mesh-_87_mesh">
+		<string name="filename" value="meshes/_87_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_88_mesh" name="mesh-_88_mesh">
+		<string name="filename" value="meshes/_88_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_89_mesh" name="mesh-_89_mesh">
+		<string name="filename" value="meshes/_89_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_90_mesh" name="mesh-_90_mesh">
+		<string name="filename" value="meshes/_90_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_91_mesh" name="mesh-_91_mesh">
+		<string name="filename" value="meshes/_91_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_92_mesh" name="mesh-_92_mesh">
+		<string name="filename" value="meshes/_92_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_93_mesh" name="mesh-_93_mesh">
+		<string name="filename" value="meshes/_93_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_94_mesh" name="mesh-_94_mesh">
+		<string name="filename" value="meshes/_94_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_95_mesh" name="mesh-_95_mesh">
+		<string name="filename" value="meshes/_95_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_96_mesh" name="mesh-_96_mesh">
+		<string name="filename" value="meshes/_96_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_97_mesh" name="mesh-_97_mesh">
+		<string name="filename" value="meshes/_97_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_98_mesh" name="mesh-_98_mesh">
+		<string name="filename" value="meshes/_98_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_99_mesh" name="mesh-_99_mesh">
+		<string name="filename" value="meshes/_99_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_100_mesh" name="mesh-_100_mesh">
+		<string name="filename" value="meshes/_100_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_101_mesh" name="mesh-_101_mesh">
+		<string name="filename" value="meshes/_101_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_102_mesh" name="mesh-_102_mesh">
+		<string name="filename" value="meshes/_102_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_103_mesh" name="mesh-_103_mesh">
+		<string name="filename" value="meshes/_103_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_104_mesh" name="mesh-_104_mesh">
+		<string name="filename" value="meshes/_104_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_105_mesh" name="mesh-_105_mesh">
+		<string name="filename" value="meshes/_105_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_106_mesh" name="mesh-_106_mesh">
+		<string name="filename" value="meshes/_106_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_107_mesh" name="mesh-_107_mesh">
+		<string name="filename" value="meshes/_107_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_108_mesh" name="mesh-_108_mesh">
+		<string name="filename" value="meshes/_108_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_109_mesh" name="mesh-_109_mesh">
+		<string name="filename" value="meshes/_109_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_110_mesh" name="mesh-_110_mesh">
+		<string name="filename" value="meshes/_110_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_111_mesh" name="mesh-_111_mesh">
+		<string name="filename" value="meshes/_111_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_112_mesh" name="mesh-_112_mesh">
+		<string name="filename" value="meshes/_112_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_113_mesh" name="mesh-_113_mesh">
+		<string name="filename" value="meshes/_113_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_114_mesh" name="mesh-_114_mesh">
+		<string name="filename" value="meshes/_114_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_115_mesh" name="mesh-_115_mesh">
+		<string name="filename" value="meshes/_115_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_116_mesh" name="mesh-_116_mesh">
+		<string name="filename" value="meshes/_116_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_117_mesh" name="mesh-_117_mesh">
+		<string name="filename" value="meshes/_117_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_118_mesh" name="mesh-_118_mesh">
+		<string name="filename" value="meshes/_118_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_119_mesh" name="mesh-_119_mesh">
+		<string name="filename" value="meshes/_119_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_120_mesh" name="mesh-_120_mesh">
+		<string name="filename" value="meshes/_120_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_121_mesh" name="mesh-_121_mesh">
+		<string name="filename" value="meshes/_121_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_122_mesh" name="mesh-_122_mesh">
+		<string name="filename" value="meshes/_122_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_123_mesh" name="mesh-_123_mesh">
+		<string name="filename" value="meshes/_123_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_124_mesh" name="mesh-_124_mesh">
+		<string name="filename" value="meshes/_124_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_125_mesh" name="mesh-_125_mesh">
+		<string name="filename" value="meshes/_125_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_126_mesh" name="mesh-_126_mesh">
+		<string name="filename" value="meshes/_126_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_127_mesh" name="mesh-_127_mesh">
+		<string name="filename" value="meshes/_127_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_128_mesh" name="mesh-_128_mesh">
+		<string name="filename" value="meshes/_128_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_129_mesh" name="mesh-_129_mesh">
+		<string name="filename" value="meshes/_129_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_130_mesh" name="mesh-_130_mesh">
+		<string name="filename" value="meshes/_130_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_131_mesh" name="mesh-_131_mesh">
+		<string name="filename" value="meshes/_131_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_132_mesh" name="mesh-_132_mesh">
+		<string name="filename" value="meshes/_132_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_133_mesh" name="mesh-_133_mesh">
+		<string name="filename" value="meshes/_133_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_134_mesh" name="mesh-_134_mesh">
+		<string name="filename" value="meshes/_134_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_135_mesh" name="mesh-_135_mesh">
+		<string name="filename" value="meshes/_135_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_136_mesh" name="mesh-_136_mesh">
+		<string name="filename" value="meshes/_136_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_137_mesh" name="mesh-_137_mesh">
+		<string name="filename" value="meshes/_137_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_138_mesh" name="mesh-_138_mesh">
+		<string name="filename" value="meshes/_138_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_139_mesh" name="mesh-_139_mesh">
+		<string name="filename" value="meshes/_139_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_140_mesh" name="mesh-_140_mesh">
+		<string name="filename" value="meshes/_140_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_141_mesh" name="mesh-_141_mesh">
+		<string name="filename" value="meshes/_141_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_142_mesh" name="mesh-_142_mesh">
+		<string name="filename" value="meshes/_142_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_143_mesh" name="mesh-_143_mesh">
+		<string name="filename" value="meshes/_143_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_144_mesh" name="mesh-_144_mesh">
+		<string name="filename" value="meshes/_144_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_145_mesh" name="mesh-_145_mesh">
+		<string name="filename" value="meshes/_145_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_146_mesh" name="mesh-_146_mesh">
+		<string name="filename" value="meshes/_146_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_147_mesh" name="mesh-_147_mesh">
+		<string name="filename" value="meshes/_147_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_148_mesh" name="mesh-_148_mesh">
+		<string name="filename" value="meshes/_148_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_149_mesh" name="mesh-_149_mesh">
+		<string name="filename" value="meshes/_149_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_150_mesh" name="mesh-_150_mesh">
+		<string name="filename" value="meshes/_150_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_151_mesh" name="mesh-_151_mesh">
+		<string name="filename" value="meshes/_151_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_152_mesh" name="mesh-_152_mesh">
+		<string name="filename" value="meshes/_152_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_153_mesh" name="mesh-_153_mesh">
+		<string name="filename" value="meshes/_153_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_154_mesh" name="mesh-_154_mesh">
+		<string name="filename" value="meshes/_154_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_155_mesh" name="mesh-_155_mesh">
+		<string name="filename" value="meshes/_155_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_156_mesh" name="mesh-_156_mesh">
+		<string name="filename" value="meshes/_156_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_157_mesh" name="mesh-_157_mesh">
+		<string name="filename" value="meshes/_157_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_158_mesh" name="mesh-_158_mesh">
+		<string name="filename" value="meshes/_158_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_159_mesh" name="mesh-_159_mesh">
+		<string name="filename" value="meshes/_159_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_160_mesh" name="mesh-_160_mesh">
+		<string name="filename" value="meshes/_160_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_161_mesh" name="mesh-_161_mesh">
+		<string name="filename" value="meshes/_161_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_162_mesh" name="mesh-_162_mesh">
+		<string name="filename" value="meshes/_162_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_163_mesh" name="mesh-_163_mesh">
+		<string name="filename" value="meshes/_163_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_164_mesh" name="mesh-_164_mesh">
+		<string name="filename" value="meshes/_164_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_165_mesh" name="mesh-_165_mesh">
+		<string name="filename" value="meshes/_165_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_166_mesh" name="mesh-_166_mesh">
+		<string name="filename" value="meshes/_166_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_167_mesh" name="mesh-_167_mesh">
+		<string name="filename" value="meshes/_167_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_168_mesh" name="mesh-_168_mesh">
+		<string name="filename" value="meshes/_168_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_169_mesh" name="mesh-_169_mesh">
+		<string name="filename" value="meshes/_169_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_170_mesh" name="mesh-_170_mesh">
+		<string name="filename" value="meshes/_170_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_171_mesh" name="mesh-_171_mesh">
+		<string name="filename" value="meshes/_171_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_172_mesh" name="mesh-_172_mesh">
+		<string name="filename" value="meshes/_172_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_173_mesh" name="mesh-_173_mesh">
+		<string name="filename" value="meshes/_173_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_174_mesh" name="mesh-_174_mesh">
+		<string name="filename" value="meshes/_174_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_175_mesh" name="mesh-_175_mesh">
+		<string name="filename" value="meshes/_175_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_176_mesh" name="mesh-_176_mesh">
+		<string name="filename" value="meshes/_176_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_177_mesh" name="mesh-_177_mesh">
+		<string name="filename" value="meshes/_177_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_178_mesh" name="mesh-_178_mesh">
+		<string name="filename" value="meshes/_178_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_179_mesh" name="mesh-_179_mesh">
+		<string name="filename" value="meshes/_179_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_180_mesh" name="mesh-_180_mesh">
+		<string name="filename" value="meshes/_180_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_181_mesh" name="mesh-_181_mesh">
+		<string name="filename" value="meshes/_181_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_182_mesh" name="mesh-_182_mesh">
+		<string name="filename" value="meshes/_182_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_183_mesh" name="mesh-_183_mesh">
+		<string name="filename" value="meshes/_183_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_184_mesh" name="mesh-_184_mesh">
+		<string name="filename" value="meshes/_184_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_185_mesh" name="mesh-_185_mesh">
+		<string name="filename" value="meshes/_185_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_186_mesh" name="mesh-_186_mesh">
+		<string name="filename" value="meshes/_186_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_187_mesh" name="mesh-_187_mesh">
+		<string name="filename" value="meshes/_187_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_188_mesh" name="mesh-_188_mesh">
+		<string name="filename" value="meshes/_188_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_189_mesh" name="mesh-_189_mesh">
+		<string name="filename" value="meshes/_189_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_190_mesh" name="mesh-_190_mesh">
+		<string name="filename" value="meshes/_190_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_191_mesh" name="mesh-_191_mesh">
+		<string name="filename" value="meshes/_191_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_192_mesh" name="mesh-_192_mesh">
+		<string name="filename" value="meshes/_192_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_193_mesh" name="mesh-_193_mesh">
+		<string name="filename" value="meshes/_193_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_194_mesh" name="mesh-_194_mesh">
+		<string name="filename" value="meshes/_194_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_195_mesh" name="mesh-_195_mesh">
+		<string name="filename" value="meshes/_195_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_196_mesh" name="mesh-_196_mesh">
+		<string name="filename" value="meshes/_196_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_197_mesh" name="mesh-_197_mesh">
+		<string name="filename" value="meshes/_197_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_198_mesh" name="mesh-_198_mesh">
+		<string name="filename" value="meshes/_198_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_199_mesh" name="mesh-_199_mesh">
+		<string name="filename" value="meshes/_199_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_200_mesh" name="mesh-_200_mesh">
+		<string name="filename" value="meshes/_200_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_201_mesh" name="mesh-_201_mesh">
+		<string name="filename" value="meshes/_201_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_202_mesh" name="mesh-_202_mesh">
+		<string name="filename" value="meshes/_202_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_203_mesh" name="mesh-_203_mesh">
+		<string name="filename" value="meshes/_203_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_204_mesh" name="mesh-_204_mesh">
+		<string name="filename" value="meshes/_204_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_205_mesh" name="mesh-_205_mesh">
+		<string name="filename" value="meshes/_205_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_206_mesh" name="mesh-_206_mesh">
+		<string name="filename" value="meshes/_206_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_207_mesh" name="mesh-_207_mesh">
+		<string name="filename" value="meshes/_207_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_208_mesh" name="mesh-_208_mesh">
+		<string name="filename" value="meshes/_208_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_209_mesh" name="mesh-_209_mesh">
+		<string name="filename" value="meshes/_209_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_210_mesh" name="mesh-_210_mesh">
+		<string name="filename" value="meshes/_210_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_211_mesh" name="mesh-_211_mesh">
+		<string name="filename" value="meshes/_211_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_212_mesh" name="mesh-_212_mesh">
+		<string name="filename" value="meshes/_212_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_213_mesh" name="mesh-_213_mesh">
+		<string name="filename" value="meshes/_213_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_214_mesh" name="mesh-_214_mesh">
+		<string name="filename" value="meshes/_214_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_215_mesh" name="mesh-_215_mesh">
+		<string name="filename" value="meshes/_215_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_216_mesh" name="mesh-_216_mesh">
+		<string name="filename" value="meshes/_216_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_217_mesh" name="mesh-_217_mesh">
+		<string name="filename" value="meshes/_217_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_218_mesh" name="mesh-_218_mesh">
+		<string name="filename" value="meshes/_218_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_219_mesh" name="mesh-_219_mesh">
+		<string name="filename" value="meshes/_219_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_220_mesh" name="mesh-_220_mesh">
+		<string name="filename" value="meshes/_220_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_221_mesh" name="mesh-_221_mesh">
+		<string name="filename" value="meshes/_221_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_222_mesh" name="mesh-_222_mesh">
+		<string name="filename" value="meshes/_222_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_223_mesh" name="mesh-_223_mesh">
+		<string name="filename" value="meshes/_223_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_224_mesh" name="mesh-_224_mesh">
+		<string name="filename" value="meshes/_224_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_225_mesh" name="mesh-_225_mesh">
+		<string name="filename" value="meshes/_225_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_226_mesh" name="mesh-_226_mesh">
+		<string name="filename" value="meshes/_226_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_227_mesh" name="mesh-_227_mesh">
+		<string name="filename" value="meshes/_227_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_228_mesh" name="mesh-_228_mesh">
+		<string name="filename" value="meshes/_228_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_229_mesh" name="mesh-_229_mesh">
+		<string name="filename" value="meshes/_229_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_230_mesh" name="mesh-_230_mesh">
+		<string name="filename" value="meshes/_230_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_231_mesh" name="mesh-_231_mesh">
+		<string name="filename" value="meshes/_231_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_232_mesh" name="mesh-_232_mesh">
+		<string name="filename" value="meshes/_232_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_233_mesh" name="mesh-_233_mesh">
+		<string name="filename" value="meshes/_233_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_234_mesh" name="mesh-_234_mesh">
+		<string name="filename" value="meshes/_234_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_235_mesh" name="mesh-_235_mesh">
+		<string name="filename" value="meshes/_235_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_236_mesh" name="mesh-_236_mesh">
+		<string name="filename" value="meshes/_236_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_237_mesh" name="mesh-_237_mesh">
+		<string name="filename" value="meshes/_237_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_238_mesh" name="mesh-_238_mesh">
+		<string name="filename" value="meshes/_238_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_239_mesh" name="mesh-_239_mesh">
+		<string name="filename" value="meshes/_239_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_240_mesh" name="mesh-_240_mesh">
+		<string name="filename" value="meshes/_240_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_241_mesh" name="mesh-_241_mesh">
+		<string name="filename" value="meshes/_241_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_242_mesh" name="mesh-_242_mesh">
+		<string name="filename" value="meshes/_242_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_243_mesh" name="mesh-_243_mesh">
+		<string name="filename" value="meshes/_243_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_244_mesh" name="mesh-_244_mesh">
+		<string name="filename" value="meshes/_244_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_245_mesh" name="mesh-_245_mesh">
+		<string name="filename" value="meshes/_245_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_246_mesh" name="mesh-_246_mesh">
+		<string name="filename" value="meshes/_246_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_247_mesh" name="mesh-_247_mesh">
+		<string name="filename" value="meshes/_247_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_248_mesh" name="mesh-_248_mesh">
+		<string name="filename" value="meshes/_248_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_249_mesh" name="mesh-_249_mesh">
+		<string name="filename" value="meshes/_249_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_250_mesh" name="mesh-_250_mesh">
+		<string name="filename" value="meshes/_250_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_251_mesh" name="mesh-_251_mesh">
+		<string name="filename" value="meshes/_251_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_252_mesh" name="mesh-_252_mesh">
+		<string name="filename" value="meshes/_252_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_253_mesh" name="mesh-_253_mesh">
+		<string name="filename" value="meshes/_253_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_254_mesh" name="mesh-_254_mesh">
+		<string name="filename" value="meshes/_254_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_255_mesh" name="mesh-_255_mesh">
+		<string name="filename" value="meshes/_255_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_256_mesh" name="mesh-_256_mesh">
+		<string name="filename" value="meshes/_256_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_257_mesh" name="mesh-_257_mesh">
+		<string name="filename" value="meshes/_257_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_258_mesh" name="mesh-_258_mesh">
+		<string name="filename" value="meshes/_258_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_259_mesh" name="mesh-_259_mesh">
+		<string name="filename" value="meshes/_259_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_260_mesh" name="mesh-_260_mesh">
+		<string name="filename" value="meshes/_260_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_261_mesh" name="mesh-_261_mesh">
+		<string name="filename" value="meshes/_261_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_262_mesh" name="mesh-_262_mesh">
+		<string name="filename" value="meshes/_262_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_263_mesh" name="mesh-_263_mesh">
+		<string name="filename" value="meshes/_263_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_264_mesh" name="mesh-_264_mesh">
+		<string name="filename" value="meshes/_264_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_265_mesh" name="mesh-_265_mesh">
+		<string name="filename" value="meshes/_265_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_266_mesh" name="mesh-_266_mesh">
+		<string name="filename" value="meshes/_266_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_267_mesh" name="mesh-_267_mesh">
+		<string name="filename" value="meshes/_267_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_268_mesh" name="mesh-_268_mesh">
+		<string name="filename" value="meshes/_268_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_269_mesh" name="mesh-_269_mesh">
+		<string name="filename" value="meshes/_269_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_270_mesh" name="mesh-_270_mesh">
+		<string name="filename" value="meshes/_270_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_271_mesh" name="mesh-_271_mesh">
+		<string name="filename" value="meshes/_271_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_272_mesh" name="mesh-_272_mesh">
+		<string name="filename" value="meshes/_272_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_273_mesh" name="mesh-_273_mesh">
+		<string name="filename" value="meshes/_273_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_274_mesh" name="mesh-_274_mesh">
+		<string name="filename" value="meshes/_274_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_275_mesh" name="mesh-_275_mesh">
+		<string name="filename" value="meshes/_275_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_276_mesh" name="mesh-_276_mesh">
+		<string name="filename" value="meshes/_276_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_277_mesh" name="mesh-_277_mesh">
+		<string name="filename" value="meshes/_277_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_278_mesh" name="mesh-_278_mesh">
+		<string name="filename" value="meshes/_278_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_279_mesh" name="mesh-_279_mesh">
+		<string name="filename" value="meshes/_279_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_280_mesh" name="mesh-_280_mesh">
+		<string name="filename" value="meshes/_280_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_281_mesh" name="mesh-_281_mesh">
+		<string name="filename" value="meshes/_281_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_282_mesh" name="mesh-_282_mesh">
+		<string name="filename" value="meshes/_282_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_283_mesh" name="mesh-_283_mesh">
+		<string name="filename" value="meshes/_283_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_284_mesh" name="mesh-_284_mesh">
+		<string name="filename" value="meshes/_284_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_285_mesh" name="mesh-_285_mesh">
+		<string name="filename" value="meshes/_285_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_286_mesh" name="mesh-_286_mesh">
+		<string name="filename" value="meshes/_286_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_287_mesh" name="mesh-_287_mesh">
+		<string name="filename" value="meshes/_287_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_288_mesh" name="mesh-_288_mesh">
+		<string name="filename" value="meshes/_288_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_289_mesh" name="mesh-_289_mesh">
+		<string name="filename" value="meshes/_289_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_290_mesh" name="mesh-_290_mesh">
+		<string name="filename" value="meshes/_290_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_291_mesh" name="mesh-_291_mesh">
+		<string name="filename" value="meshes/_291_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_292_mesh" name="mesh-_292_mesh">
+		<string name="filename" value="meshes/_292_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_293_mesh" name="mesh-_293_mesh">
+		<string name="filename" value="meshes/_293_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_294_mesh" name="mesh-_294_mesh">
+		<string name="filename" value="meshes/_294_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_295_mesh" name="mesh-_295_mesh">
+		<string name="filename" value="meshes/_295_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_296_mesh" name="mesh-_296_mesh">
+		<string name="filename" value="meshes/_296_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_297_mesh" name="mesh-_297_mesh">
+		<string name="filename" value="meshes/_297_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_298_mesh" name="mesh-_298_mesh">
+		<string name="filename" value="meshes/_298_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_299_mesh" name="mesh-_299_mesh">
+		<string name="filename" value="meshes/_299_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_300_mesh" name="mesh-_300_mesh">
+		<string name="filename" value="meshes/_300_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_301_mesh" name="mesh-_301_mesh">
+		<string name="filename" value="meshes/_301_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_302_mesh" name="mesh-_302_mesh">
+		<string name="filename" value="meshes/_302_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_303_mesh" name="mesh-_303_mesh">
+		<string name="filename" value="meshes/_303_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_304_mesh" name="mesh-_304_mesh">
+		<string name="filename" value="meshes/_304_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_305_mesh" name="mesh-_305_mesh">
+		<string name="filename" value="meshes/_305_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_306_mesh" name="mesh-_306_mesh">
+		<string name="filename" value="meshes/_306_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_307_mesh" name="mesh-_307_mesh">
+		<string name="filename" value="meshes/_307_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_308_mesh" name="mesh-_308_mesh">
+		<string name="filename" value="meshes/_308_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_309_mesh" name="mesh-_309_mesh">
+		<string name="filename" value="meshes/_309_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_310_mesh" name="mesh-_310_mesh">
+		<string name="filename" value="meshes/_310_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_311_mesh" name="mesh-_311_mesh">
+		<string name="filename" value="meshes/_311_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_312_mesh" name="mesh-_312_mesh">
+		<string name="filename" value="meshes/_312_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_313_mesh" name="mesh-_313_mesh">
+		<string name="filename" value="meshes/_313_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_314_mesh" name="mesh-_314_mesh">
+		<string name="filename" value="meshes/_314_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_315_mesh" name="mesh-_315_mesh">
+		<string name="filename" value="meshes/_315_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_316_mesh" name="mesh-_316_mesh">
+		<string name="filename" value="meshes/_316_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_317_mesh" name="mesh-_317_mesh">
+		<string name="filename" value="meshes/_317_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_318_mesh" name="mesh-_318_mesh">
+		<string name="filename" value="meshes/_318_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_319_mesh" name="mesh-_319_mesh">
+		<string name="filename" value="meshes/_319_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_320_mesh" name="mesh-_320_mesh">
+		<string name="filename" value="meshes/_320_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_321_mesh" name="mesh-_321_mesh">
+		<string name="filename" value="meshes/_321_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_322_mesh" name="mesh-_322_mesh">
+		<string name="filename" value="meshes/_322_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_323_mesh" name="mesh-_323_mesh">
+		<string name="filename" value="meshes/_323_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_324_mesh" name="mesh-_324_mesh">
+		<string name="filename" value="meshes/_324_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_325_mesh" name="mesh-_325_mesh">
+		<string name="filename" value="meshes/_325_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_326_mesh" name="mesh-_326_mesh">
+		<string name="filename" value="meshes/_326_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_327_mesh" name="mesh-_327_mesh">
+		<string name="filename" value="meshes/_327_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_328_mesh" name="mesh-_328_mesh">
+		<string name="filename" value="meshes/_328_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_329_mesh" name="mesh-_329_mesh">
+		<string name="filename" value="meshes/_329_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_330_mesh" name="mesh-_330_mesh">
+		<string name="filename" value="meshes/_330_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_331_mesh" name="mesh-_331_mesh">
+		<string name="filename" value="meshes/_331_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_332_mesh" name="mesh-_332_mesh">
+		<string name="filename" value="meshes/_332_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_333_mesh" name="mesh-_333_mesh">
+		<string name="filename" value="meshes/_333_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_334_mesh" name="mesh-_334_mesh">
+		<string name="filename" value="meshes/_334_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_335_mesh" name="mesh-_335_mesh">
+		<string name="filename" value="meshes/_335_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_336_mesh" name="mesh-_336_mesh">
+		<string name="filename" value="meshes/_336_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_337_mesh" name="mesh-_337_mesh">
+		<string name="filename" value="meshes/_337_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_338_mesh" name="mesh-_338_mesh">
+		<string name="filename" value="meshes/_338_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_339_mesh" name="mesh-_339_mesh">
+		<string name="filename" value="meshes/_339_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_340_mesh" name="mesh-_340_mesh">
+		<string name="filename" value="meshes/_340_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_341_mesh" name="mesh-_341_mesh">
+		<string name="filename" value="meshes/_341_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_342_mesh" name="mesh-_342_mesh">
+		<string name="filename" value="meshes/_342_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_343_mesh" name="mesh-_343_mesh">
+		<string name="filename" value="meshes/_343_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_344_mesh" name="mesh-_344_mesh">
+		<string name="filename" value="meshes/_344_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_345_mesh" name="mesh-_345_mesh">
+		<string name="filename" value="meshes/_345_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_346_mesh" name="mesh-_346_mesh">
+		<string name="filename" value="meshes/_346_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_347_mesh" name="mesh-_347_mesh">
+		<string name="filename" value="meshes/_347_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_348_mesh" name="mesh-_348_mesh">
+		<string name="filename" value="meshes/_348_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_349_mesh" name="mesh-_349_mesh">
+		<string name="filename" value="meshes/_349_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_350_mesh" name="mesh-_350_mesh">
+		<string name="filename" value="meshes/_350_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_351_mesh" name="mesh-_351_mesh">
+		<string name="filename" value="meshes/_351_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_352_mesh" name="mesh-_352_mesh">
+		<string name="filename" value="meshes/_352_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_353_mesh" name="mesh-_353_mesh">
+		<string name="filename" value="meshes/_353_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_354_mesh" name="mesh-_354_mesh">
+		<string name="filename" value="meshes/_354_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_355_mesh" name="mesh-_355_mesh">
+		<string name="filename" value="meshes/_355_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_356_mesh" name="mesh-_356_mesh">
+		<string name="filename" value="meshes/_356_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_357_mesh" name="mesh-_357_mesh">
+		<string name="filename" value="meshes/_357_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_358_mesh" name="mesh-_358_mesh">
+		<string name="filename" value="meshes/_358_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_359_mesh" name="mesh-_359_mesh">
+		<string name="filename" value="meshes/_359_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_360_mesh" name="mesh-_360_mesh">
+		<string name="filename" value="meshes/_360_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_361_mesh" name="mesh-_361_mesh">
+		<string name="filename" value="meshes/_361_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_362_mesh" name="mesh-_362_mesh">
+		<string name="filename" value="meshes/_362_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_363_mesh" name="mesh-_363_mesh">
+		<string name="filename" value="meshes/_363_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_364_mesh" name="mesh-_364_mesh">
+		<string name="filename" value="meshes/_364_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_365_mesh" name="mesh-_365_mesh">
+		<string name="filename" value="meshes/_365_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_366_mesh" name="mesh-_366_mesh">
+		<string name="filename" value="meshes/_366_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_367_mesh" name="mesh-_367_mesh">
+		<string name="filename" value="meshes/_367_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_368_mesh" name="mesh-_368_mesh">
+		<string name="filename" value="meshes/_368_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_369_mesh" name="mesh-_369_mesh">
+		<string name="filename" value="meshes/_369_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_370_mesh" name="mesh-_370_mesh">
+		<string name="filename" value="meshes/_370_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_371_mesh" name="mesh-_371_mesh">
+		<string name="filename" value="meshes/_371_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_372_mesh" name="mesh-_372_mesh">
+		<string name="filename" value="meshes/_372_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_373_mesh" name="mesh-_373_mesh">
+		<string name="filename" value="meshes/_373_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_374_mesh" name="mesh-_374_mesh">
+		<string name="filename" value="meshes/_374_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_375_mesh" name="mesh-_375_mesh">
+		<string name="filename" value="meshes/_375_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_376_mesh" name="mesh-_376_mesh">
+		<string name="filename" value="meshes/_376_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_377_mesh" name="mesh-_377_mesh">
+		<string name="filename" value="meshes/_377_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_378_mesh" name="mesh-_378_mesh">
+		<string name="filename" value="meshes/_378_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_379_mesh" name="mesh-_379_mesh">
+		<string name="filename" value="meshes/_379_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_380_mesh" name="mesh-_380_mesh">
+		<string name="filename" value="meshes/_380_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_381_mesh" name="mesh-_381_mesh">
+		<string name="filename" value="meshes/_381_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_382_mesh" name="mesh-_382_mesh">
+		<string name="filename" value="meshes/_382_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_383_mesh" name="mesh-_383_mesh">
+		<string name="filename" value="meshes/_383_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_384_mesh" name="mesh-_384_mesh">
+		<string name="filename" value="meshes/_384_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_385_mesh" name="mesh-_385_mesh">
+		<string name="filename" value="meshes/_385_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_386_mesh" name="mesh-_386_mesh">
+		<string name="filename" value="meshes/_386_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_387_mesh" name="mesh-_387_mesh">
+		<string name="filename" value="meshes/_387_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_388_mesh" name="mesh-_388_mesh">
+		<string name="filename" value="meshes/_388_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_389_mesh" name="mesh-_389_mesh">
+		<string name="filename" value="meshes/_389_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_390_mesh" name="mesh-_390_mesh">
+		<string name="filename" value="meshes/_390_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_391_mesh" name="mesh-_391_mesh">
+		<string name="filename" value="meshes/_391_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_392_mesh" name="mesh-_392_mesh">
+		<string name="filename" value="meshes/_392_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_393_mesh" name="mesh-_393_mesh">
+		<string name="filename" value="meshes/_393_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_394_mesh" name="mesh-_394_mesh">
+		<string name="filename" value="meshes/_394_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_395_mesh" name="mesh-_395_mesh">
+		<string name="filename" value="meshes/_395_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_396_mesh" name="mesh-_396_mesh">
+		<string name="filename" value="meshes/_396_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_397_mesh" name="mesh-_397_mesh">
+		<string name="filename" value="meshes/_397_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_398_mesh" name="mesh-_398_mesh">
+		<string name="filename" value="meshes/_398_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_399_mesh" name="mesh-_399_mesh">
+		<string name="filename" value="meshes/_399_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_400_mesh" name="mesh-_400_mesh">
+		<string name="filename" value="meshes/_400_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_401_mesh" name="mesh-_401_mesh">
+		<string name="filename" value="meshes/_401_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_402_mesh" name="mesh-_402_mesh">
+		<string name="filename" value="meshes/_402_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_403_mesh" name="mesh-_403_mesh">
+		<string name="filename" value="meshes/_403_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_404_mesh" name="mesh-_404_mesh">
+		<string name="filename" value="meshes/_404_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_405_mesh" name="mesh-_405_mesh">
+		<string name="filename" value="meshes/_405_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_406_mesh" name="mesh-_406_mesh">
+		<string name="filename" value="meshes/_406_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_407_mesh" name="mesh-_407_mesh">
+		<string name="filename" value="meshes/_407_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_408_mesh" name="mesh-_408_mesh">
+		<string name="filename" value="meshes/_408_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_409_mesh" name="mesh-_409_mesh">
+		<string name="filename" value="meshes/_409_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_410_mesh" name="mesh-_410_mesh">
+		<string name="filename" value="meshes/_410_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_411_mesh" name="mesh-_411_mesh">
+		<string name="filename" value="meshes/_411_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_412_mesh" name="mesh-_412_mesh">
+		<string name="filename" value="meshes/_412_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_413_mesh" name="mesh-_413_mesh">
+		<string name="filename" value="meshes/_413_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_414_mesh" name="mesh-_414_mesh">
+		<string name="filename" value="meshes/_414_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_415_mesh" name="mesh-_415_mesh">
+		<string name="filename" value="meshes/_415_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_416_mesh" name="mesh-_416_mesh">
+		<string name="filename" value="meshes/_416_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_417_mesh" name="mesh-_417_mesh">
+		<string name="filename" value="meshes/_417_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_418_mesh" name="mesh-_418_mesh">
+		<string name="filename" value="meshes/_418_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_419_mesh" name="mesh-_419_mesh">
+		<string name="filename" value="meshes/_419_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_420_mesh" name="mesh-_420_mesh">
+		<string name="filename" value="meshes/_420_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_421_mesh" name="mesh-_421_mesh">
+		<string name="filename" value="meshes/_421_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_422_mesh" name="mesh-_422_mesh">
+		<string name="filename" value="meshes/_422_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_423_mesh" name="mesh-_423_mesh">
+		<string name="filename" value="meshes/_423_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_424_mesh" name="mesh-_424_mesh">
+		<string name="filename" value="meshes/_424_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_425_mesh" name="mesh-_425_mesh">
+		<string name="filename" value="meshes/_425_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_426_mesh" name="mesh-_426_mesh">
+		<string name="filename" value="meshes/_426_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_427_mesh" name="mesh-_427_mesh">
+		<string name="filename" value="meshes/_427_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_428_mesh" name="mesh-_428_mesh">
+		<string name="filename" value="meshes/_428_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_429_mesh" name="mesh-_429_mesh">
+		<string name="filename" value="meshes/_429_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_430_mesh" name="mesh-_430_mesh">
+		<string name="filename" value="meshes/_430_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_431_mesh" name="mesh-_431_mesh">
+		<string name="filename" value="meshes/_431_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_432_mesh" name="mesh-_432_mesh">
+		<string name="filename" value="meshes/_432_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_433_mesh" name="mesh-_433_mesh">
+		<string name="filename" value="meshes/_433_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_434_mesh" name="mesh-_434_mesh">
+		<string name="filename" value="meshes/_434_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_435_mesh" name="mesh-_435_mesh">
+		<string name="filename" value="meshes/_435_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_436_mesh" name="mesh-_436_mesh">
+		<string name="filename" value="meshes/_436_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_437_mesh" name="mesh-_437_mesh">
+		<string name="filename" value="meshes/_437_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_438_mesh" name="mesh-_438_mesh">
+		<string name="filename" value="meshes/_438_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_439_mesh" name="mesh-_439_mesh">
+		<string name="filename" value="meshes/_439_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_440_mesh" name="mesh-_440_mesh">
+		<string name="filename" value="meshes/_440_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_441_mesh" name="mesh-_441_mesh">
+		<string name="filename" value="meshes/_441_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_442_mesh" name="mesh-_442_mesh">
+		<string name="filename" value="meshes/_442_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_443_mesh" name="mesh-_443_mesh">
+		<string name="filename" value="meshes/_443_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_444_mesh" name="mesh-_444_mesh">
+		<string name="filename" value="meshes/_444_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_445_mesh" name="mesh-_445_mesh">
+		<string name="filename" value="meshes/_445_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_446_mesh" name="mesh-_446_mesh">
+		<string name="filename" value="meshes/_446_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_447_mesh" name="mesh-_447_mesh">
+		<string name="filename" value="meshes/_447_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_448_mesh" name="mesh-_448_mesh">
+		<string name="filename" value="meshes/_448_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_449_mesh" name="mesh-_449_mesh">
+		<string name="filename" value="meshes/_449_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_450_mesh" name="mesh-_450_mesh">
+		<string name="filename" value="meshes/_450_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_451_mesh" name="mesh-_451_mesh">
+		<string name="filename" value="meshes/_451_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_452_mesh" name="mesh-_452_mesh">
+		<string name="filename" value="meshes/_452_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_453_mesh" name="mesh-_453_mesh">
+		<string name="filename" value="meshes/_453_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_454_mesh" name="mesh-_454_mesh">
+		<string name="filename" value="meshes/_454_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_455_mesh" name="mesh-_455_mesh">
+		<string name="filename" value="meshes/_455_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_456_mesh" name="mesh-_456_mesh">
+		<string name="filename" value="meshes/_456_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_457_mesh" name="mesh-_457_mesh">
+		<string name="filename" value="meshes/_457_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_458_mesh" name="mesh-_458_mesh">
+		<string name="filename" value="meshes/_458_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_459_mesh" name="mesh-_459_mesh">
+		<string name="filename" value="meshes/_459_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_460_mesh" name="mesh-_460_mesh">
+		<string name="filename" value="meshes/_460_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_461_mesh" name="mesh-_461_mesh">
+		<string name="filename" value="meshes/_461_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_462_mesh" name="mesh-_462_mesh">
+		<string name="filename" value="meshes/_462_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_463_mesh" name="mesh-_463_mesh">
+		<string name="filename" value="meshes/_463_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_464_mesh" name="mesh-_464_mesh">
+		<string name="filename" value="meshes/_464_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_465_mesh" name="mesh-_465_mesh">
+		<string name="filename" value="meshes/_465_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_466_mesh" name="mesh-_466_mesh">
+		<string name="filename" value="meshes/_466_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_467_mesh" name="mesh-_467_mesh">
+		<string name="filename" value="meshes/_467_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_468_mesh" name="mesh-_468_mesh">
+		<string name="filename" value="meshes/_468_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_469_mesh" name="mesh-_469_mesh">
+		<string name="filename" value="meshes/_469_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_470_mesh" name="mesh-_470_mesh">
+		<string name="filename" value="meshes/_470_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_471_mesh" name="mesh-_471_mesh">
+		<string name="filename" value="meshes/_471_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_472_mesh" name="mesh-_472_mesh">
+		<string name="filename" value="meshes/_472_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_473_mesh" name="mesh-_473_mesh">
+		<string name="filename" value="meshes/_473_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_474_mesh" name="mesh-_474_mesh">
+		<string name="filename" value="meshes/_474_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_475_mesh" name="mesh-_475_mesh">
+		<string name="filename" value="meshes/_475_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_476_mesh" name="mesh-_476_mesh">
+		<string name="filename" value="meshes/_476_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_477_mesh" name="mesh-_477_mesh">
+		<string name="filename" value="meshes/_477_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_478_mesh" name="mesh-_478_mesh">
+		<string name="filename" value="meshes/_478_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_479_mesh" name="mesh-_479_mesh">
+		<string name="filename" value="meshes/_479_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_480_mesh" name="mesh-_480_mesh">
+		<string name="filename" value="meshes/_480_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_481_mesh" name="mesh-_481_mesh">
+		<string name="filename" value="meshes/_481_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_482_mesh" name="mesh-_482_mesh">
+		<string name="filename" value="meshes/_482_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_483_mesh" name="mesh-_483_mesh">
+		<string name="filename" value="meshes/_483_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_484_mesh" name="mesh-_484_mesh">
+		<string name="filename" value="meshes/_484_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_485_mesh" name="mesh-_485_mesh">
+		<string name="filename" value="meshes/_485_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_486_mesh" name="mesh-_486_mesh">
+		<string name="filename" value="meshes/_486_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_487_mesh" name="mesh-_487_mesh">
+		<string name="filename" value="meshes/_487_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_488_mesh" name="mesh-_488_mesh">
+		<string name="filename" value="meshes/_488_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_489_mesh" name="mesh-_489_mesh">
+		<string name="filename" value="meshes/_489_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_490_mesh" name="mesh-_490_mesh">
+		<string name="filename" value="meshes/_490_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_491_mesh" name="mesh-_491_mesh">
+		<string name="filename" value="meshes/_491_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_492_mesh" name="mesh-_492_mesh">
+		<string name="filename" value="meshes/_492_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_493_mesh" name="mesh-_493_mesh">
+		<string name="filename" value="meshes/_493_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_494_mesh" name="mesh-_494_mesh">
+		<string name="filename" value="meshes/_494_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_495_mesh" name="mesh-_495_mesh">
+		<string name="filename" value="meshes/_495_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_496_mesh" name="mesh-_496_mesh">
+		<string name="filename" value="meshes/_496_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_497_mesh" name="mesh-_497_mesh">
+		<string name="filename" value="meshes/_497_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_498_mesh" name="mesh-_498_mesh">
+		<string name="filename" value="meshes/_498_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_499_mesh" name="mesh-_499_mesh">
+		<string name="filename" value="meshes/_499_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_500_mesh" name="mesh-_500_mesh">
+		<string name="filename" value="meshes/_500_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_501_mesh" name="mesh-_501_mesh">
+		<string name="filename" value="meshes/_501_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_502_mesh" name="mesh-_502_mesh">
+		<string name="filename" value="meshes/_502_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_503_mesh" name="mesh-_503_mesh">
+		<string name="filename" value="meshes/_503_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_504_mesh" name="mesh-_504_mesh">
+		<string name="filename" value="meshes/_504_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_505_mesh" name="mesh-_505_mesh">
+		<string name="filename" value="meshes/_505_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_506_mesh" name="mesh-_506_mesh">
+		<string name="filename" value="meshes/_506_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_507_mesh" name="mesh-_507_mesh">
+		<string name="filename" value="meshes/_507_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_508_mesh" name="mesh-_508_mesh">
+		<string name="filename" value="meshes/_508_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_509_mesh" name="mesh-_509_mesh">
+		<string name="filename" value="meshes/_509_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_510_mesh" name="mesh-_510_mesh">
+		<string name="filename" value="meshes/_510_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_511_mesh" name="mesh-_511_mesh">
+		<string name="filename" value="meshes/_511_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_512_mesh" name="mesh-_512_mesh">
+		<string name="filename" value="meshes/_512_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_513_mesh" name="mesh-_513_mesh">
+		<string name="filename" value="meshes/_513_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_514_mesh" name="mesh-_514_mesh">
+		<string name="filename" value="meshes/_514_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_515_mesh" name="mesh-_515_mesh">
+		<string name="filename" value="meshes/_515_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_516_mesh" name="mesh-_516_mesh">
+		<string name="filename" value="meshes/_516_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_517_mesh" name="mesh-_517_mesh">
+		<string name="filename" value="meshes/_517_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_518_mesh" name="mesh-_518_mesh">
+		<string name="filename" value="meshes/_518_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_519_mesh" name="mesh-_519_mesh">
+		<string name="filename" value="meshes/_519_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_520_mesh" name="mesh-_520_mesh">
+		<string name="filename" value="meshes/_520_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_521_mesh" name="mesh-_521_mesh">
+		<string name="filename" value="meshes/_521_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_522_mesh" name="mesh-_522_mesh">
+		<string name="filename" value="meshes/_522_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_523_mesh" name="mesh-_523_mesh">
+		<string name="filename" value="meshes/_523_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_524_mesh" name="mesh-_524_mesh">
+		<string name="filename" value="meshes/_524_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_525_mesh" name="mesh-_525_mesh">
+		<string name="filename" value="meshes/_525_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_526_mesh" name="mesh-_526_mesh">
+		<string name="filename" value="meshes/_526_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_527_mesh" name="mesh-_527_mesh">
+		<string name="filename" value="meshes/_527_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_528_mesh" name="mesh-_528_mesh">
+		<string name="filename" value="meshes/_528_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_529_mesh" name="mesh-_529_mesh">
+		<string name="filename" value="meshes/_529_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_530_mesh" name="mesh-_530_mesh">
+		<string name="filename" value="meshes/_530_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_531_mesh" name="mesh-_531_mesh">
+		<string name="filename" value="meshes/_531_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_532_mesh" name="mesh-_532_mesh">
+		<string name="filename" value="meshes/_532_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_533_mesh" name="mesh-_533_mesh">
+		<string name="filename" value="meshes/_533_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_534_mesh" name="mesh-_534_mesh">
+		<string name="filename" value="meshes/_534_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_535_mesh" name="mesh-_535_mesh">
+		<string name="filename" value="meshes/_535_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_536_mesh" name="mesh-_536_mesh">
+		<string name="filename" value="meshes/_536_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_537_mesh" name="mesh-_537_mesh">
+		<string name="filename" value="meshes/_537_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_538_mesh" name="mesh-_538_mesh">
+		<string name="filename" value="meshes/_538_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_539_mesh" name="mesh-_539_mesh">
+		<string name="filename" value="meshes/_539_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_540_mesh" name="mesh-_540_mesh">
+		<string name="filename" value="meshes/_540_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_541_mesh" name="mesh-_541_mesh">
+		<string name="filename" value="meshes/_541_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_542_mesh" name="mesh-_542_mesh">
+		<string name="filename" value="meshes/_542_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_543_mesh" name="mesh-_543_mesh">
+		<string name="filename" value="meshes/_543_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_544_mesh" name="mesh-_544_mesh">
+		<string name="filename" value="meshes/_544_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_545_mesh" name="mesh-_545_mesh">
+		<string name="filename" value="meshes/_545_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_546_mesh" name="mesh-_546_mesh">
+		<string name="filename" value="meshes/_546_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_547_mesh" name="mesh-_547_mesh">
+		<string name="filename" value="meshes/_547_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_548_mesh" name="mesh-_548_mesh">
+		<string name="filename" value="meshes/_548_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_549_mesh" name="mesh-_549_mesh">
+		<string name="filename" value="meshes/_549_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_550_mesh" name="mesh-_550_mesh">
+		<string name="filename" value="meshes/_550_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_551_mesh" name="mesh-_551_mesh">
+		<string name="filename" value="meshes/_551_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_552_mesh" name="mesh-_552_mesh">
+		<string name="filename" value="meshes/_552_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_553_mesh" name="mesh-_553_mesh">
+		<string name="filename" value="meshes/_553_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_554_mesh" name="mesh-_554_mesh">
+		<string name="filename" value="meshes/_554_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_555_mesh" name="mesh-_555_mesh">
+		<string name="filename" value="meshes/_555_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_556_mesh" name="mesh-_556_mesh">
+		<string name="filename" value="meshes/_556_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_557_mesh" name="mesh-_557_mesh">
+		<string name="filename" value="meshes/_557_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_558_mesh" name="mesh-_558_mesh">
+		<string name="filename" value="meshes/_558_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_559_mesh" name="mesh-_559_mesh">
+		<string name="filename" value="meshes/_559_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_560_mesh" name="mesh-_560_mesh">
+		<string name="filename" value="meshes/_560_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_561_mesh" name="mesh-_561_mesh">
+		<string name="filename" value="meshes/_561_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_562_mesh" name="mesh-_562_mesh">
+		<string name="filename" value="meshes/_562_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_563_mesh" name="mesh-_563_mesh">
+		<string name="filename" value="meshes/_563_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_564_mesh" name="mesh-_564_mesh">
+		<string name="filename" value="meshes/_564_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_565_mesh" name="mesh-_565_mesh">
+		<string name="filename" value="meshes/_565_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_566_mesh" name="mesh-_566_mesh">
+		<string name="filename" value="meshes/_566_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_567_mesh" name="mesh-_567_mesh">
+		<string name="filename" value="meshes/_567_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_568_mesh" name="mesh-_568_mesh">
+		<string name="filename" value="meshes/_568_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_569_mesh" name="mesh-_569_mesh">
+		<string name="filename" value="meshes/_569_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_570_mesh" name="mesh-_570_mesh">
+		<string name="filename" value="meshes/_570_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_571_mesh" name="mesh-_571_mesh">
+		<string name="filename" value="meshes/_571_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_572_mesh" name="mesh-_572_mesh">
+		<string name="filename" value="meshes/_572_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_573_mesh" name="mesh-_573_mesh">
+		<string name="filename" value="meshes/_573_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_574_mesh" name="mesh-_574_mesh">
+		<string name="filename" value="meshes/_574_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_575_mesh" name="mesh-_575_mesh">
+		<string name="filename" value="meshes/_575_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_576_mesh" name="mesh-_576_mesh">
+		<string name="filename" value="meshes/_576_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_577_mesh" name="mesh-_577_mesh">
+		<string name="filename" value="meshes/_577_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_578_mesh" name="mesh-_578_mesh">
+		<string name="filename" value="meshes/_578_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_579_mesh" name="mesh-_579_mesh">
+		<string name="filename" value="meshes/_579_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_580_mesh" name="mesh-_580_mesh">
+		<string name="filename" value="meshes/_580_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_581_mesh" name="mesh-_581_mesh">
+		<string name="filename" value="meshes/_581_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_582_mesh" name="mesh-_582_mesh">
+		<string name="filename" value="meshes/_582_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_583_mesh" name="mesh-_583_mesh">
+		<string name="filename" value="meshes/_583_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_584_mesh" name="mesh-_584_mesh">
+		<string name="filename" value="meshes/_584_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_585_mesh" name="mesh-_585_mesh">
+		<string name="filename" value="meshes/_585_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_586_mesh" name="mesh-_586_mesh">
+		<string name="filename" value="meshes/_586_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_587_mesh" name="mesh-_587_mesh">
+		<string name="filename" value="meshes/_587_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_588_mesh" name="mesh-_588_mesh">
+		<string name="filename" value="meshes/_588_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_589_mesh" name="mesh-_589_mesh">
+		<string name="filename" value="meshes/_589_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_590_mesh" name="mesh-_590_mesh">
+		<string name="filename" value="meshes/_590_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_591_mesh" name="mesh-_591_mesh">
+		<string name="filename" value="meshes/_591_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_592_mesh" name="mesh-_592_mesh">
+		<string name="filename" value="meshes/_592_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_593_mesh" name="mesh-_593_mesh">
+		<string name="filename" value="meshes/_593_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_594_mesh" name="mesh-_594_mesh">
+		<string name="filename" value="meshes/_594_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_595_mesh" name="mesh-_595_mesh">
+		<string name="filename" value="meshes/_595_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_596_mesh" name="mesh-_596_mesh">
+		<string name="filename" value="meshes/_596_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_597_mesh" name="mesh-_597_mesh">
+		<string name="filename" value="meshes/_597_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_598_mesh" name="mesh-_598_mesh">
+		<string name="filename" value="meshes/_598_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_599_mesh" name="mesh-_599_mesh">
+		<string name="filename" value="meshes/_599_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_600_mesh" name="mesh-_600_mesh">
+		<string name="filename" value="meshes/_600_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_601_mesh" name="mesh-_601_mesh">
+		<string name="filename" value="meshes/_601_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_602_mesh" name="mesh-_602_mesh">
+		<string name="filename" value="meshes/_602_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_603_mesh" name="mesh-_603_mesh">
+		<string name="filename" value="meshes/_603_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_604_mesh" name="mesh-_604_mesh">
+		<string name="filename" value="meshes/_604_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_605_mesh" name="mesh-_605_mesh">
+		<string name="filename" value="meshes/_605_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_606_mesh" name="mesh-_606_mesh">
+		<string name="filename" value="meshes/_606_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_607_mesh" name="mesh-_607_mesh">
+		<string name="filename" value="meshes/_607_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_608_mesh" name="mesh-_608_mesh">
+		<string name="filename" value="meshes/_608_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_609_mesh" name="mesh-_609_mesh">
+		<string name="filename" value="meshes/_609_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_610_mesh" name="mesh-_610_mesh">
+		<string name="filename" value="meshes/_610_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_611_mesh" name="mesh-_611_mesh">
+		<string name="filename" value="meshes/_611_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_612_mesh" name="mesh-_612_mesh">
+		<string name="filename" value="meshes/_612_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_613_mesh" name="mesh-_613_mesh">
+		<string name="filename" value="meshes/_613_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_614_mesh" name="mesh-_614_mesh">
+		<string name="filename" value="meshes/_614_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_615_mesh" name="mesh-_615_mesh">
+		<string name="filename" value="meshes/_615_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_616_mesh" name="mesh-_616_mesh">
+		<string name="filename" value="meshes/_616_mesh.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-_617_mesh" name="mesh-_617_mesh">
+		<string name="filename" value="meshes/_617_mesh.ply"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Plane" name="mesh-Plane">
+		<string name="filename" value="meshes/Plane.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+
+<!-- Volumes -->
+
+</scene>

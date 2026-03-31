@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>V2X Network Visualizer</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<!-- Map container -->
+<div id="map"></div>
+
+<!-- Loading overlay -->
+<div id="loading-overlay" class="hidden">
+  <div class="spinner"></div>
+  <span id="loading-msg">Loading...</span>
+</div>
+
+<!-- Top bar -->
+<div id="top-bar" class="panel">
+  <button class="mode-btn active" id="btn-replay">&#9654; Replay</button>
+  <button class="mode-btn" id="btn-live">&#9679; Live</button>
+
+  <div id="file-input-wrap">
+    <input id="file-path-input" type="text" placeholder="simulation_dataset.csv" />
+    <button class="btn btn-primary" id="open-btn">Open</button>
+  </div>
+
+  <div id="live-indicator">
+    <span class="dot"></span>
+    <span>Live</span>
+  </div>
+</div>
+
+<!-- View tabs (Map vs Graph) -->
+<div id="view-tabs" class="panel" style="top: 10px; left: 140px; display: flex; gap: 8px;">
+  <button class="mode-btn active" id="tab-map" style="padding: 5px 10px;">🗺️ Map</button>
+  <button class="mode-btn" id="tab-graph" style="padding: 5px 10px;">📊 Graph</button>
+</div>
+
+<!-- Graph controls panel — shown only in Graph mode, floats over the map -->
+<div id="graph-controls" class="panel" style="display:none; top: 50px; left: 10px; right: 10px; flex-wrap: wrap; gap: 10px; align-items: center;">
+  <!-- RSU -->
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <label style="font-size:11px;color:#888;text-transform:uppercase;">RSU</label>
+    <select id="rsu-selector" style="padding:4px 8px;border-radius:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#e0e0e0;font-size:12px;">
+      <option value="">Select RSU...</option>
+    </select>
+  </div>
+  <!-- Area (optional) -->
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <label style="font-size:11px;color:#888;text-transform:uppercase;">Area <span style="color:#555;font-weight:normal;">(optional)</span></label>
+    <span id="area-display" style="font-size:12px;color:#aaa;padding:4px 8px;" title="Draw a box on the map first, or leave empty for all vehicles">No filter</span>
+  </div>
+  <!-- Max Hops -->
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <label style="font-size:11px;color:#888;text-transform:uppercase;">Max Hops</label>
+    <input id="max-hops" type="number" min="1" max="10" value="3" style="width:50px;padding:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#e0e0e0;font-size:12px;">
+  </div>
+  <!-- RSSI -->
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <label style="font-size:11px;color:#888;text-transform:uppercase;">RSSI ≥ (dBm)</label>
+    <input id="rssi-threshold" type="number" value="-100" style="width:60px;padding:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#e0e0e0;font-size:12px;">
+  </div>
+  <!-- SINR -->
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <label style="font-size:11px;color:#888;text-transform:uppercase;">SINR ≥ (dB)</label>
+    <input id="sinr-threshold" type="number" value="-50" style="width:60px;padding:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#e0e0e0;font-size:12px;">
+  </div>
+  <!-- Throughput -->
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <label style="font-size:11px;color:#888;text-transform:uppercase;">Tput ≥ (Mbps)</label>
+    <input id="throughput-threshold" type="number" value="0" step="0.1" style="width:65px;padding:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#e0e0e0;font-size:12px;">
+  </div>
+  <!-- Direction -->
+  <div style="display:flex;flex-direction:column;gap:3px;">
+    <label style="font-size:11px;color:#888;text-transform:uppercase;">Direction</label>
+    <select id="direction-selector" style="padding:4px 8px;border-radius:4px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#e0e0e0;font-size:12px;">
+      <option value="both">Both</option>
+      <option value="uplink">Uplink</option>
+      <option value="downlink">Downlink</option>
+    </select>
+  </div>
+  <!-- Generate -->
+  <button id="generate-graph-btn" class="btn btn-primary" style="padding:5px 14px;align-self:flex-end;">Generate</button>
+  <!-- Stats -->
+  <span id="graph-stats" style="font-size:11px;color:#666;align-self:flex-end;margin-left:auto;">No graph loaded</span>
+</div>
+
+<!-- Filter notice -->
+<div id="filter-notice" class="panel">
+  Showing links for <strong id="filter-node-label"></strong>
+  <button id="clear-filter-btn">Clear filter</button>
+</div>
+
+<!-- Controls panel (metric + link direction + filters) -->
+<div id="controls-panel" class="panel">
+  <div class="ctrl-group">
+    <span class="ctrl-label">Metric</span>
+    <button class="toggle-btn active" data-metric="rssi_dbm">RSSI</button>
+    <button class="toggle-btn" data-metric="sinr_eff_db">SINR</button>
+    <button class="toggle-btn" data-metric="throughput_kbps">Throughput</button>
+    <button class="toggle-btn" data-metric="bler">BLER</button>
+  </div>
+  <div class="ctrl-separator"></div>
+  <div class="ctrl-group">
+    <button class="toggle-btn" id="hide-outage-btn">Hide OUTAGE</button>
+    <button class="toggle-btn" id="area-select-btn" title="Draw a rectangle to show links only within that area">&#9632; Area</button>
+    <button class="toggle-btn" id="area-clear-btn" style="display:none">&#10005; Area</button>
+    <button class="toggle-btn" id="area-copy-btn" style="display:none" title="Copy bounding box coordinates">📋 Copy</button>
+  </div>
+</div>
+
+<!-- Timeline bar -->
+<div id="timeline-bar" class="panel">
+  <button id="prev-btn" title="Previous frame">&#9198;</button>
+  <button id="play-btn" title="Play/Pause">&#9654;</button>
+  <button id="next-btn" title="Next frame">&#9197;</button>
+  <input id="time-slider" type="range" min="0" max="0" value="0" step="1" />
+  <span id="ts-label">t = —</span>
+  <select id="speed-select">
+    <option value="0.25">0.25x</option>
+    <option value="0.5">0.5x</option>
+    <option value="1" selected>1x</option>
+    <option value="2">2x</option>
+    <option value="5">5x</option>
+    <option value="10">10x</option>
+  </select>
+  <button class="btn btn-secondary" id="jump-live-btn">Jump to Live</button>
+</div>
+
+<!-- Legend panel — content injected by app.js -->
+<div id="legend-panel" class="panel"></div>
+
+<!-- Settings panel -->
+<div id="settings-panel" class="panel">
+  <span id="settings-title">Settings</span>
+  <button id="settings-toggle" title="Toggle settings">&#9881;</button>
+
+  <div id="settings-body">
+    <p id="settings-hint">Default center: Ookayama, Tokyo.<br>Adjust lat/lon to align nodes with the map.</p>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Center Lat</label>
+        <input type="number" id="s-center-lat" step="0.0001" value="35.6046" />
+      </div>
+      <div class="field-group">
+        <label>Center Lon</label>
+        <input type="number" id="s-center-lon" step="0.0001" value="139.6844" />
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Origin X (m)</label>
+        <input type="number" id="s-origin-x" step="1" value="0" />
+      </div>
+      <div class="field-group">
+        <label>Origin Y (m)</label>
+        <input type="number" id="s-origin-y" step="1" value="0" />
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label>Watch interval (ms)</label>
+      <input type="number" id="s-interval" step="100" min="100" value="500" />
+    </div>
+
+    <div id="threshold-section">
+      <div class="thr-header">Thresholds <span class="thr-labels">Good &middot; OK &middot; Poor</span></div>
+      <div class="thr-row">
+        <label>RSSI (dBm)</label>
+        <input type="number" id="thr-rssi-0" step="1" value="-70" />
+        <input type="number" id="thr-rssi-1" step="1" value="-85" />
+        <input type="number" id="thr-rssi-2" step="1" value="-100" />
+      </div>
+      <div class="thr-row">
+        <label>SINR (dB)</label>
+        <input type="number" id="thr-sinr-0" step="1" value="20" />
+        <input type="number" id="thr-sinr-1" step="1" value="10" />
+        <input type="number" id="thr-sinr-2" step="1" value="0" />
+      </div>
+      <div class="thr-row">
+        <label>Thput (k)</label>
+        <input type="number" id="thr-thput-0" step="10000" value="100000" />
+        <input type="number" id="thr-thput-1" step="10000" value="50000" />
+        <input type="number" id="thr-thput-2" step="10000" value="10000" />
+      </div>
+      <div class="thr-row">
+        <label>BLER</label>
+        <input type="number" id="thr-bler-0" step="0.01" min="0" max="1" value="0.05" />
+        <input type="number" id="thr-bler-1" step="0.01" min="0" max="1" value="0.15" />
+        <input type="number" id="thr-bler-2" step="0.01" min="0" max="1" value="0.30" />
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="settings-apply-btn" style="width:100%;margin-top:8px">Apply</button>
+  </div>
+</div>
+
+<!-- Status bar -->
+<div id="status-bar" class="panel"></div>
+
+<!-- JS modules — bump ?v= to force cache invalidation -->
+<script src="/static/tooltip.js?v=16"></script>
+<script>console.log('✓ tooltip.js loaded');</script>
+<script src="/static/map_layer.js?v=16"></script>
+<script>console.log('✓ map_layer.js loaded, MapLayer:', typeof MapLayer);</script>
+<script src="/static/timeline.js?v=16"></script>
+<script>console.log('✓ timeline.js loaded, Timeline:', typeof Timeline);</script>
+<script src="/static/settings_panel.js?v=16"></script>
+<script>console.log('✓ settings_panel.js loaded, SettingsPanel:', typeof SettingsPanel);</script>
+<script src="/static/graph_visualization.js?v=16"></script>
+<script>console.log('✓ graph_visualization.js loaded, GraphVisualization:', typeof GraphVisualization);</script>
+<script src="/static/app.js?v=16"></script>
+<script>console.log('✓ app.js loaded, App:', typeof App);</script>
+</body>
+</html>

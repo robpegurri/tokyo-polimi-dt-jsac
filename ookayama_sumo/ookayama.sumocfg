@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-02-20T11:24:21.131496+01:00 by Eclipse SUMO sumo 1.26.0
+-->
+
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="ookayama.net.xml"/>
+        <route-files value="routes.rou.xml"/>
+        <additional-files value="rerouting.add.xml, continuous_rerouters.add.xml"/>
+    </input>
+
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+        <step-length value="0.1"/>
+    </time>
+
+    <routing>
+        <device.rerouting.probability value="1"/>
+        <device.rerouting.period value="0"/>
+    </routing>
+    
+    <output>
+        <fcd-output value="traces.csv"/>
+        <fcd-output.attributes value="id,x,y,speed,angle"/>
+    </output>
+
+</sumoConfiguration>
