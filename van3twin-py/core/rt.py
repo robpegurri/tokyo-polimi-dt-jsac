@@ -7,6 +7,7 @@ import os
 from scipy.spatial import cKDTree
 from sionna.rt import Transmitter, Receiver
 from core.filters import RSSIKalmanFilter, AdaptiveBiasFilter
+import poc_startup as poc
 
 def manage_location_message(message, sionna_structure):
     t = time.time()
@@ -174,19 +175,20 @@ def manage_online_reconfiguration(msg_entries, sionna_structure, is_manual_overr
             print(f"        - {k} = {v}")
             if k in {"kalman_process_var", "kalman_meas_var", "kalman_rt_var"} and filter == "kalman":
                 print("        Reconfiguring Kalman filters with new parameters.")
-                sionna_structure["filters"] = {
-                    ("1","2"): RSSIKalmanFilter(process_var=sionna_structure["kalman_process_var"], meas_var=sionna_structure["kalman_meas_var"], rt_var=sionna_structure["kalman_rt_var"]),
-                    ("1","3"): RSSIKalmanFilter(process_var=sionna_structure["kalman_process_var"], meas_var=sionna_structure["kalman_meas_var"], rt_var=sionna_structure["kalman_rt_var"]),
-                    ("2","3"): RSSIKalmanFilter(process_var=sionna_structure["kalman_process_var"], meas_var=sionna_structure["kalman_meas_var"], rt_var=sionna_structure["kalman_rt_var"]),
-                }
-
+                poc.configure_filters(transmitters=sionna_structure["transmitters"], 
+                                      receivers=sionna_structure["receivers"], 
+                                      use_kalman_filter=True, 
+                                      kalman_process_var=sionna_structure["kalman_process_var"], 
+                                      kalman_meas_var=sionna_structure["kalman_meas_var"], 
+                                      kalman_rt_var=sionna_structure["kalman_rt_var"])
+                
             if k in {"adaptive_bias_alpha_signal", "adaptive_bias_alpha_bias"} and filter == "adaptive_bias":
                 print("        Reconfiguring Adaptive Bias filters with new parameters.")
-                sionna_structure["filters"] = {
-                    ("1","2"): AdaptiveBiasFilter(alpha_signal=sionna_structure["adaptive_bias_alpha_signal"], alpha_bias=sionna_structure["adaptive_bias_alpha_bias"]),
-                    ("1","3"): AdaptiveBiasFilter(alpha_signal=sionna_structure["adaptive_bias_alpha_signal"], alpha_bias=sionna_structure["adaptive_bias_alpha_bias"]),
-                    ("2","3"): AdaptiveBiasFilter(alpha_signal=sionna_structure["adaptive_bias_alpha_signal"], alpha_bias=sionna_structure["adaptive_bias_alpha_bias"])
-                }
+                poc.configure_filters(transmitters=sionna_structure["transmitters"], 
+                                      receivers=sionna_structure["receivers"], 
+                                      use_adaptive_bias_filter=True, 
+                                      adaptive_bias_alpha_signal=sionna_structure["adaptive_bias_alpha_signal"], 
+                                      adaptive_bias_alpha_bias=sionna_structure["adaptive_bias_alpha_bias"])
     else:
         print("        No RT configuration changes applied (all fields were -1 or none provided).")
         response[0]["response"] = "304 Not Modified"

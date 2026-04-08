@@ -10,7 +10,7 @@ class RSSIKalmanFilter:
         rt_var:      Trust in Ray Tracer (High = treat RT as a "noisy suggestion" 
                      to filter out the fast-fading spikes).
         """
-        print(f"Initializing a RSSI Kalman Filter with process_var={process_var}, meas_var={meas_var}, rt_var={rt_var}")
+        #print(f"Initializing a RSSI Kalman Filter with process_var={process_var}, meas_var={meas_var}, rt_var={rt_var}")
 
         self.x = None  # Filter state (best estimate)
         self.P = 1.0   # Initial uncertainty

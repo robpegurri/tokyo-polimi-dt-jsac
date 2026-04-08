@@ -33,4 +33,5 @@ def extract_custom_pattern(elevation_csv: str, azimuth_csv: str):
     def factory(elevation_csv, azimuth_csv):
         return CsvPattern(elevation_csv, azimuth_csv)
 
+    #print("     [INFO] Registering custom antenna pattern...")
     register_antenna_pattern("panasonic_wigig_rsu", factory)
