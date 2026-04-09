@@ -6,8 +6,7 @@ import csv
 import os
 from scipy.spatial import cKDTree
 from sionna.rt import Transmitter, Receiver
-from core.filters import RSSIKalmanFilter, AdaptiveBiasFilter
-import poc_startup as poc
+import poc.setup as poc
 
 def manage_location_message(message, sionna_structure):
     t = time.time()

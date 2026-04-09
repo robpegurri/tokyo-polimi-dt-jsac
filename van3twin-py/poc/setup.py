@@ -1,8 +1,8 @@
 import socket
 from antennas.custom_antenna import extract_custom_pattern
-from sionna.rt import PathSolver, Camera, PlanarArray, load_scene, load_mesh, SceneObject, ITURadioMaterial
-#from core.rt import manage_online_reconfiguration
+from sionna.rt import PathSolver, Camera, PlanarArray, load_scene, load_mesh, SceneObject, ITURadioMaterial, Receiver, Transmitter
 from core.filters import RSSIKalmanFilter, AdaptiveBiasFilter
+import numpy as np
 
 sionna_structure = dict()
 ray_tracing_time_ms = 0
@@ -23,12 +23,14 @@ def setup_scene(file_name, frequency, bandwidth):
     return sionna_structure["scene"]
 
 
-def setup_antennas(transmitters, receivers,
-                   num_rows=1, num_cols=1, vertical_spacing=0.5, horizontal_spacing=0.5, 
-                   pattern="dipole", polarization="VH", elevation_csv=None, azimuth_csv=None):
+def setup_antenna_type(transmitters, receivers,
+                       num_rows=1, num_cols=1, vertical_spacing=0.5, horizontal_spacing=0.5, 
+                       pattern="dipole", polarization="VH", elevation_csv=None, azimuth_csv=None,
+                       simulate_perfect_beamforming=False):
 
     sionna_structure["transmitters"] = transmitters
     sionna_structure["receivers"] = receivers
+    sionna_structure["simulate_perfect_beamforming"] = simulate_perfect_beamforming
 
     # Custom antenna pattern - Panasonic 60 GHz WiGig RSU
     if pattern == "panasonic_wigig_rsu":
@@ -41,71 +43,15 @@ def setup_antennas(transmitters, receivers,
    
     else:
         sionna_structure["planar_array"] = PlanarArray(num_rows=num_rows, num_cols=num_cols, vertical_spacing=vertical_spacing, horizontal_spacing=horizontal_spacing, pattern=pattern, polarization=polarization)
-
-    return
-
-
-def set_antenna_displacement(car_id, displacement):
-
-    if "antenna_displacement" not in sionna_structure:
-        sionna_structure["antenna_displacement"] = {}
-
-    sionna_structure["antenna_displacement"][car_id] = displacement
-    return
-
-
-def set_tx_power(car_id, tx_power_dbm):
-    if "tx_powers" not in sionna_structure:
-        sionna_structure["tx_powers"] = {}
-
-    sionna_structure["tx_powers"][car_id] = tx_power_dbm
-    return
-
-
-def add_network_object(id, mesh_path=None, antenna_displacement=None, tx_power_dbm=None):
-
-    scene = sionna_structure["scene"]
-
-    if scene.get(f"obj_{id}") is not None:
-        print(f"Object {id} (obj_{id}) already exists in the scene.")
-        return scene.get(f"obj_{id}")
     
-    mesh = load_mesh(mesh_path)
-    set_antenna_displacement(id, antenna_displacement)
-
-    car_obj = SceneObject(mi_mesh=mesh,
-                          name=f"obj_{id}",
-                          radio_material=ITURadioMaterial(f"itu_metal_{id}",
-                                                        "metal",
-                                                        thickness=0.01,
-                                                        color=(0.8, 0.1, 0.1)))
-    scene.edit(add=car_obj)
-
-    # Set the car transmit power
-    set_tx_power(id, tx_power_dbm)
-
-    return car_obj
-
-def add_tree(id=None, mesh_path=None, position=None):
-
-    tree_mesh = load_mesh(mesh_path)
-    tree_obj = SceneObject(mi_mesh=tree_mesh,
-                        name=f"tree_{id}",
-                        radio_material=ITURadioMaterial(f"itu_wood_{id}",
-                                                    "wood",
-                                                    thickness=0.01,
-                                                    color=(0.6, 0.3, 0.1)))
-    sionna_structure["scene"].edit(add=tree_obj)
-
-    x = position[0]
-    y = position[1]
-    z = position[2]
-
-    sionna_structure["scene"].get(f"tree_{id}").position = [x, y, z]
+    # Apply to the scene
+    sionna_structure["scene"].rx_array = sionna_structure["planar_array"]
+    sionna_structure["scene"].tx_array = sionna_structure["planar_array"]
 
     return
 
-def configure_rt(verbose=False,
+
+def setup_rt(verbose=False,
                  time_checker=False,
                  rt_max_depth=5,
                  rt_max_num_paths_per_src=1e10,
@@ -138,7 +84,8 @@ def configure_rt(verbose=False,
 
     return
 
-def configure_filters(transmitters, 
+
+def setup_filters(transmitters, 
                       receivers,
                       use_kalman_filter=False,        # Kalman filter parameters
                       kalman_process_var=0.3, 
@@ -180,6 +127,117 @@ def configure_filters(transmitters,
                 sionna_structure["filters"][(f"{rx}", f"{tx}")] = AdaptiveBiasFilter(alpha_signal=adaptive_bias_alpha_signal, 
                                                                                      alpha_bias=adaptive_bias_alpha_bias)
     
+    return
+
+
+def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, orientation, tx_power_dbm=None):
+
+    '''
+        Parameters:
+        - ref_obj_id: the reference numerical object ID
+        - ant_id: the numerical antenna ID
+        - peer_antenna_id: the id of the other antenna to which it is bounded
+        - displacement: the 3D displacement of the antenna from the reference point on the object [dx, dy, dz]
+        - orientation: the orientation of the antenna relative to the object [alpha, theta, phi]
+        - tx_power_dbm: the transmit power in dBm (required if the antenna is a transmitter)
+
+        Output:
+        sionna_structure["object_and_antennas"] = {
+            ref_obj_id: {
+                ant_id: {
+                    "ant_id": ant_id,
+                    "peer_antenna_id": peer_antenna_id,
+                    "displacement": [dx, dy, dz],
+                    "orientation": [alpha, theta, phi],
+                    "tx_power_dbm": tx_power_dbm
+                },
+                ...
+            },
+            ...
+        }
+    '''
+
+    if sionna_structure["simulate_perfect_beamforming"] and peer_antenna_id is None:
+        print(f"     [ERROR] Perfect beamforming simulation requires a peer antenna ID to be specified for {ant_id}.")
+        return
+    
+    if sionna_structure["simulate_perfect_beamforming"] == False and orientation is None:
+        print(f"     [ERROR] Fixed antenna orientation must be specified for {ant_id} when not simulating perfect beamforming.")
+        return
+
+    if ant_id in sionna_structure["transmitters"] and tx_power_dbm is None:
+        print(f"     [ERROR] {ant_id} is defined as a Transmitter: Tx power (dBm) must be provided.")
+        return
+    
+    if "object_and_antennas" not in sionna_structure:
+        sionna_structure["object_and_antennas"] = {}
+
+    if ref_obj_id not in sionna_structure["object_and_antennas"]:
+        sionna_structure["object_and_antennas"][ref_obj_id] = {}
+
+    if ant_id not in sionna_structure["object_and_antennas"][ref_obj_id]:
+        sionna_structure["object_and_antennas"][ref_obj_id][ant_id] = {
+            "ant_id": ant_id,
+            "peer_antenna_id": peer_antenna_id,
+            "displacement": displacement,
+            "orientation": orientation,
+            "tx_power_dbm": tx_power_dbm
+        }
+
+    scene = sionna_structure["scene"]
+    car_position = scene.get(f"obj_{ref_obj_id}").position
+    ant_position = [car_position[0] + displacement[0], car_position[1] + displacement[1], car_position[2] + displacement[2]]
+
+    if ant_id in sionna_structure["transmitters"]:
+        scene.tx_array = sionna_structure["planar_array"]
+        scene.add(Transmitter(f"ant_{ant_id}", position=ant_position, orientation=orientation, display_radius=1))
+
+    if ant_id in sionna_structure["receivers"]:
+        scene.rx_array = sionna_structure["planar_array"]
+        scene.add(Receiver(f"ant_{ant_id}", position=ant_position, orientation=orientation, display_radius=1))
+
+
+def add_object(ref_obj_id=None, mesh_path=None, position=None):
+
+    scene = sionna_structure["scene"]
+
+    if scene.get(f"obj_{ref_obj_id}") is not None:
+        print(f"Object {ref_obj_id} (obj_{ref_obj_id}) already exists in the scene.")
+        return scene.get(f"obj_{ref_obj_id}")
+    
+    mesh = load_mesh(mesh_path)
+
+    obj = SceneObject(mi_mesh=mesh,
+                      name=f"obj_{ref_obj_id}",
+                      radio_material=ITURadioMaterial(f"itu_metal_{ref_obj_id}",
+                                                        "metal",
+                                                        thickness=0.01,
+                                                        color=(0.8, 0.1, 0.1)))
+    scene.edit(add=obj)
+    # Apply position
+    scene.get(f"obj_{ref_obj_id}").position = position
+    scene.get(f"obj_{ref_obj_id}").orientation = [-0.5*np.pi, 0, 0]
+
+    return obj
+
+
+def add_tree(ref_tree_id=None, mesh_path=None, position=None):
+
+    tree_mesh = load_mesh(mesh_path)
+    tree_obj = SceneObject(mi_mesh=tree_mesh,
+                        name=f"tree_{ref_tree_id}",
+                        radio_material=ITURadioMaterial(f"itu_wood_{ref_tree_id}",
+                                                    "wood",
+                                                    thickness=0.01,
+                                                    color=(0.6, 0.3, 0.1)))
+    sionna_structure["scene"].edit(add=tree_obj)
+
+    x = position[0]
+    y = position[1]
+    z = position[2]
+
+    sionna_structure["scene"].get(f"tree_{ref_tree_id}").position = [x, y, z]
+
     return
 
 
@@ -276,6 +334,6 @@ def startup():
         print("     [WARNING] Frequency not set. Defaulting to 28 GHz.")
         sionna_structure["frequency"] = 28e9
 
-    print(f'Setup complete. Working at {sionna_structure["scene"].frequency / 1e9} GHz, bandwidth {sionna_structure["scene"].bandwidth / 1e6} MHz.')
+    print(f'Setup complete. Working at {str(sionna_structure["scene"].frequency / 1e9)} GHz, bandwidth {str(sionna_structure["scene"].bandwidth / 1e6)} MHz.')
 
     return sionna_structure
