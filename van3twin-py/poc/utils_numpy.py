@@ -1,6 +1,5 @@
-import math
+from sionna.rt import load_mesh, SceneObject, ITURadioMaterial, Receiver, Transmitter
 import numpy as np
-import time
 
 def move_object(ref_obj_id=None, position=None, heading_angle=None, velocity=None, sionna_structure=None):
 
@@ -17,22 +16,18 @@ def move_object(ref_obj_id=None, position=None, heading_angle=None, velocity=Non
 
     scene = sionna_structure["scene"]
     verbose = sionna_structure["verbose"]
-    time_checker = sionna_structure["time_checker"]
-
-    if time_checker:
-        start_time = time.time() * 1000
 
     # Note: heading_angle arrives in the form of a heading, meaning that:
     # 0 = North, 90 = East, 180 = South, 270 = West
     # Sionna coordinates are:
     # 0 = East, 90 = North, 180 = West, 270 = South
     sionna_angle = (-heading_angle + 90) % 360 # This works perfectly
-    # HOWEVER my object meshes have wrong orientation, so we need to apply a +90° rotation to align the heading with the movement direction
+    # HOWEVER object meshes have wrong orientation, so we need to apply a +90° rotation to align the heading with the movement direction
     car_angle = sionna_angle + 90
-    car_angle_rad = math.radians(car_angle)
+    car_angle_rad = np.radians(car_angle)
     # Antennas are okay, no rotation is needed like for the cars
     antenna_angle = sionna_angle
-    antenna_angle_rad = math.radians(antenna_angle)
+    antenna_angle_rad = np.radians(antenna_angle)
 
     # Move the object mesh
     obj = scene.get(f"obj_{ref_obj_id}")
@@ -41,10 +36,7 @@ def move_object(ref_obj_id=None, position=None, heading_angle=None, velocity=Non
         return
     obj.position = position
     # Car meshes are created with opposite orientation: we need to apply a 180° rotation to align the heading with the movement direction
-    obj.orientation = [car_angle_rad - math.pi, 0, 0]
-
-    # Invalidate cached paths
-    sionna_structure["rays_cache"] = {}
+    obj.orientation = np.array([car_angle_rad - np.pi, 0, 0])
 
     # Move the antennas mounted on the object
     if ref_obj_id in sionna_structure["object_and_antennas"]:
@@ -62,15 +54,12 @@ def move_object(ref_obj_id=None, position=None, heading_angle=None, velocity=Non
                 original = sionna_structure["object_and_antennas"][ref_obj_id][antenna["ant_id"]]["orientation"]
                 sionna_structure["object_and_antennas"][ref_obj_id][antenna["ant_id"]]["orientation"] = [antenna_angle_rad, original[1], original[2]]
 
-                v_x = velocity * math.sin(antenna_angle_rad)
-                v_y = velocity * math.cos(antenna_angle_rad)
+                v_x = velocity * np.sin(antenna_angle_rad)
+                v_y = velocity * np.cos(antenna_angle_rad)
                 v_z = 0
-                antenna_object.velocity = [v_x, v_y, v_z]
+                antenna_object.velocity = np.array([v_x, v_y, v_z])
 
                 if sionna_structure["simulate_perfect_beamforming"]:
-
-                    if time_checker:
-                        start_time_bf = time.time() * 1000 if time_checker else None
                     
                     can_bf = can_beamform(antenna["ant_id"], antenna["peer_antenna_id"], sionna_structure)
 
@@ -91,20 +80,12 @@ def move_object(ref_obj_id=None, position=None, heading_angle=None, velocity=Non
                     else:
                         if verbose:
                             print(f"     [DEBUG] Out of beamforming range for ant_{antenna['ant_id']} and its peer ant_{antenna['peer_antenna_id']}")
-                            antenna_object.orientation = [antenna_angle_rad, 0, 0]
-
-                    if time_checker:
-                        end_time_bf = time.time() * 1000
-                        print(f"     [TIME] Time taken for beamforming check and orientation update: {end_time_bf - start_time_bf:.4f} ms")
+                            antenna_object.orientation = np.array([antenna_angle_rad, 0, 0])
                         
                 else:
                     if verbose:
                         print(f"     [INFO] Applying fixed orientation for antenna {antenna['ant_id']} with angle offset {antenna_angle} degrees.")
-                    antenna_object.orientation = [antenna_angle_rad, 0, 0]
-
-    if time_checker:
-        end_time = time.time() * 1000
-        print(f"    [TIME] Time taken for location updates: {end_time - start_time:.4f} ms")
+                    antenna_object.orientation = np.array([antenna_angle_rad, 0, 0])
 
     return
 
@@ -125,22 +106,20 @@ def point_toward_peer(from_id, to_id, sionna_structure):
     ant_obj = scene.get(f"ant_{from_id}")
     peer_obj = scene.get(f"ant_{to_id}")
 
-    p_from = np.array(ant_obj.position)
-    p_to   = np.array(peer_obj.position)
-    dx = p_to[0] - p_from[0]
-    dy = p_to[1] - p_from[1]
-    dz = p_to[2] - p_from[2]
+    pos_from = np.array(ant_obj.position)
+    pos_to   = np.array(peer_obj.position)
+    dx, dy, dz = pos_to - pos_from
 
     az, el, roll = ant_data["orientation"]
 
     if ant_data["mounted_vertically"]:
         # Beam sweeps vertically: update elevation, keep azimuth
-        el = -math.atan2(dz, math.sqrt(dx**2 + dy**2))
+        el = -np.arctan2(dz, np.sqrt(dx**2 + dy**2))
     else:
         # Beam sweeps horizontally: update azimuth, keep elevation
-        az = math.atan2(dy, dx)
+        az = np.arctan2(dy, dx)
 
-    ant_obj.orientation = [float(az), float(el), float(roll)]
+    ant_obj.orientation = np.array([float(az), float(el), float(roll)])
 
 
 def can_beamform(ant_1_id, ant_2_id, sionna_structure, beam_range=60):
@@ -152,10 +131,10 @@ def can_beamform(ant_1_id, ant_2_id, sionna_structure, beam_range=60):
                 ant_data = antennas[from_id]
                 break
         
-        p_from = np.array(sionna_structure["scene"].get(f"ant_{from_id}").position)
-        p_to = np.array(sionna_structure["scene"].get(f"ant_{to_id}").position)
-        heading = math.degrees(ant_data["orientation"][0])
-        target_az = math.degrees(math.atan2(p_to[1] - p_from[1], p_to[0] - p_from[0]))
+        pos_from = np.array(sionna_structure["scene"].get(f"ant_{from_id}").position)
+        pos_to = np.array(sionna_structure["scene"].get(f"ant_{to_id}").position)
+        heading = np.degrees(ant_data["orientation"][0])
+        target_az = np.degrees(np.arctan2(pos_to[1] - pos_from[1], pos_to[0] - pos_from[0]))
         
         # Normalize angle diff to [-180, 180]
         rel_az = (target_az - heading + 180) % 360 - 180

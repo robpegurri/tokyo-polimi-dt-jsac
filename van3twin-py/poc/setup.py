@@ -10,7 +10,7 @@ frame_num = 0
 
 sionna_structure["run_type"] = "real-time" # or "simulation"
 
-def setup_scene(file_name, frequency, bandwidth):
+def setup_scene(file_name, frequency, bandwidth, verbose=False, time_checker=False):
     # Import scene
     sionna_structure["scene"] = load_scene(filename=file_name, merge_shapes=True, merge_shapes_exclude_regex="car")
 
@@ -19,6 +19,16 @@ def setup_scene(file_name, frequency, bandwidth):
     sionna_structure["frequency"] = frequency
     sionna_structure["scene"].bandwidth = bandwidth
     sionna_structure["bandwidth"] = bandwidth
+
+    # Set verbose
+    sionna_structure["verbose"] = verbose
+    sionna_structure["time_checker"] = time_checker
+    if verbose:
+        print(f"    [INFO] Verbose mode is enabled.")
+    if time_checker:
+        print(f"    [INFO] Time checker is enabled.")
+
+    print(f"    [INFO] Loaded scene with frequency {frequency/1e9} GHz, bandwidth {bandwidth/1e6} MHz.")
 
     return sionna_structure["scene"]
 
@@ -51,8 +61,7 @@ def setup_antenna_type(transmitters, receivers,
     return
 
 
-def setup_rt(verbose=False,
-                 time_checker=False,
+def setup_rt(time_checker=False,
                  rt_max_depth=5,
                  rt_max_num_paths_per_src=1e10,
                  rt_samples_per_src=1e10,
@@ -65,7 +74,6 @@ def setup_rt(verbose=False,
                  rt_sbr_seed=42,
                  rt_synthetic_array=False):
     
-    sionna_structure["verbose"] = verbose
     sionna_structure["time_checker"] = time_checker
 
     sionna_structure["path_solver"] = PathSolver()
@@ -130,7 +138,7 @@ def setup_filters(transmitters,
     return
 
 
-def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, orientation, tx_power_dbm=None):
+def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, orientation, mounted_vertically=False, tx_power_dbm=None):
 
     '''
         Parameters:
@@ -139,6 +147,8 @@ def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, 
         - peer_antenna_id: the id of the other antenna to which it is bounded
         - displacement: the 3D displacement of the antenna from the reference point on the object [dx, dy, dz]
         - orientation: the orientation of the antenna relative to the object [alpha, theta, phi]
+        - mounted_vertically: whether the antenna is mounted vertically
+
         - tx_power_dbm: the transmit power in dBm (required if the antenna is a transmitter)
 
         Output:
@@ -149,7 +159,8 @@ def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, 
                     "peer_antenna_id": peer_antenna_id,
                     "displacement": [dx, dy, dz],
                     "orientation": [alpha, theta, phi],
-                    "tx_power_dbm": tx_power_dbm
+                    "tx_power_dbm": tx_power_dbm,
+                    "mounted_vertically": mounted_vertically
                 },
                 ...
             },
@@ -175,18 +186,24 @@ def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, 
     if ref_obj_id not in sionna_structure["object_and_antennas"]:
         sionna_structure["object_and_antennas"][ref_obj_id] = {}
 
+    scene = sionna_structure["scene"]
+    car_position = scene.get(f"obj_{ref_obj_id}").position
+    ant_position = [car_position[0] + displacement[0], car_position[1] + displacement[1], car_position[2] + displacement[2]]
+
+    if mounted_vertically:
+        # Roll the array 90° around its boresight (+X axis) so the elements stand upright.
+        # Pitch (orientation[1]) steers elevation during beamforming — do not touch it here.
+        orientation = [orientation[0], orientation[1], orientation[2] + np.pi / 2]
+
     if ant_id not in sionna_structure["object_and_antennas"][ref_obj_id]:
         sionna_structure["object_and_antennas"][ref_obj_id][ant_id] = {
             "ant_id": ant_id,
             "peer_antenna_id": peer_antenna_id,
             "displacement": displacement,
-            "orientation": orientation,
-            "tx_power_dbm": tx_power_dbm
+            "orientation": orientation,   # stored AFTER roll correction so point_toward_peer preserves it
+            "tx_power_dbm": tx_power_dbm,
+            "mounted_vertically": mounted_vertically
         }
-
-    scene = sionna_structure["scene"]
-    car_position = scene.get(f"obj_{ref_obj_id}").position
-    ant_position = [car_position[0] + displacement[0], car_position[1] + displacement[1], car_position[2] + displacement[2]]
 
     if ant_id in sionna_structure["transmitters"]:
         scene.tx_array = sionna_structure["planar_array"]
@@ -257,7 +274,7 @@ def startup():
     if sionna_structure["run_type"] == "real-time":
         udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         udp_socket.bind(("0.0.0.0", port))  # External server configuration
-        print(f"Expecting UDP messages from Tokyo Digital Twin on UDP/{port}")
+        print(f"    [INFO] Expecting UDP messages from Tokyo Digital Twin on UDP/{port}")
     else:
         udp_socket = None
     sionna_structure["udp_socket"] = udp_socket
@@ -334,6 +351,6 @@ def startup():
         print("     [WARNING] Frequency not set. Defaulting to 28 GHz.")
         sionna_structure["frequency"] = 28e9
 
-    print(f'Setup complete. Working at {str(sionna_structure["scene"].frequency / 1e9)} GHz, bandwidth {str(sionna_structure["scene"].bandwidth / 1e6)} MHz.')
+    print(f"    [INFO] Setup procedure complete.")
 
     return sionna_structure

@@ -86,6 +86,7 @@ def configure_rt(verbose=False,
     sionna_structure["specular_reflection"] = rt_specular_reflection
     sionna_structure["diffuse_reflection"] = rt_diffuse_reflection
     sionna_structure["refraction"] = rt_refraction
+    
     sionna_structure["diffraction"] = rt_diffraction
     sionna_structure["corner_diffraction"] = rt_corner_diffraction
     sionna_structure["seed"] = rt_sbr_seed
