@@ -61,8 +61,7 @@ def setup_antenna_type(transmitters, receivers,
     return
 
 
-def setup_rt(time_checker=False,
-                 rt_max_depth=5,
+def setup_rt(rt_max_depth=5,
                  rt_max_num_paths_per_src=1e10,
                  rt_samples_per_src=1e10,
                  rt_los=True,
@@ -74,8 +73,6 @@ def setup_rt(time_checker=False,
                  rt_sbr_seed=42,
                  rt_synthetic_array=False):
     
-    sionna_structure["time_checker"] = time_checker
-
     sionna_structure["path_solver"] = PathSolver()
 
     sionna_structure["max_depth"] = rt_max_depth

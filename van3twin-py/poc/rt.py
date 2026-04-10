@@ -49,28 +49,42 @@ def compute_rays(sionna_structure):
     return sionna_structure["rays_cache"]
 
 
-def compute_rssi(tx_id, rx_id, sionna_structure):
-
-    #print(f"Calculating path loss for object {tx_id} -> object {rx_id} in get_path_loss()...")
+def compute_rssi(ant_id_tx, ant_id_rx, sionna_structure):
 
     t = time.time()
+
+    verbose = sionna_structure["verbose"]
+    time_checker = sionna_structure["time_checker"]
+
+    if verbose:
+        print(f"Calculating path loss for object {ant_id_tx} -> object {ant_id_rx} in get_path_loss()...")
+
+    # Safety checks
+    if ant_id_tx not in sionna_structure["transmitters"]:
+        print(f"    [ERROR] Transmitter antenna {ant_id_tx} not set as a transmitter.")
+        return None
+    if ant_id_rx not in sionna_structure["receivers"]:
+        print(f"    [ERROR] Receiver antenna {ant_id_rx} not set as a receiver.")
+        return None
+
     rc = sionna_structure["rays_cache"]
     path_coefficients = []
     total_cir = 0
 
-    if not (tx_id in rc and rx_id in rc[tx_id]) and not (rx_id in rc and tx_id in rc[rx_id]):
-        print(f"    [WARN] No cached rays for {tx_id}-{rx_id}, calling compute_rays()...")
+    if ant_id_tx not in rc.keys():
+        if verbose:
+            print(f"    [WARN] No cached rays for {ant_id_tx}-{ant_id_rx}, calling compute_rays()...")
         compute_rays(sionna_structure)
         rc = sionna_structure["rays_cache"]  # re-read after recompute
 
-    print(f"    [TIME] Ray retrieval for {tx_id}-{rx_id} took {(time.time() - t) * 1000:.2f} ms")
+    if time_checker:
+        print(f"    [TIME] Ray retrieval for {ant_id_tx}-{ant_id_rx} took {(time.time() - t) * 1000:.2f} ms")
 
-    # Retrieve from cache unconditionally — covers both the cache-hit path and the
-    # freshly-computed path (including reciprocal lookup for Rx-only nodes like RSUs).
-    if tx_id in rc and rx_id in rc[tx_id]:
-        path_coefficients = rc[tx_id][rx_id].get("path_coefficients", [])
-    elif rx_id in rc and tx_id in rc[rx_id]:
-        path_coefficients = rc[rx_id][tx_id].get("path_coefficients", [])
+    # Retrieve from cache
+    if ant_id_tx in rc and ant_id_rx in rc[ant_id_tx]:
+        if verbose:
+            print(f"    [DEBUG] Retrieved path coefficients from cache for {ant_id_tx}-{ant_id_rx}.")
+        path_coefficients = rc[ant_id_tx][ant_id_rx].get("path_coefficients", [])
 
     if len(path_coefficients) > 0:
         # Uncoherent paths summation
@@ -82,19 +96,25 @@ def compute_rssi(tx_id, rx_id, sionna_structure):
     # Calculate path loss in dB
     if total_cir > 0:
         path_loss = -10 * np.log10(total_cir)
+
     else:
         # Handle the case where path loss calculation is not valid
-        #if sionna_structure["verbose"]:
-            #print(f"    [WARN] Not enough rays for {tx_id}-{rx_id}. Returning 300 dB.")
+        if verbose:
+            print(f"    [WARN] Not enough rays for {ant_id_tx}-{ant_id_rx}. Returning 300 dB.")
         path_loss = 404
 
-    if tx_id in sionna_structure["object_and_antennas"]:
-        ant_data = sionna_structure["object_and_antennas"][tx_id]
-        ant_id = list(ant_data.keys())[0]
-        tx_power_dbm = ant_data[ant_id].get("tx_power_dbm", 0)
+    for obj_id in sionna_structure["object_and_antennas"]:
+        if ant_id_tx in sionna_structure["object_and_antennas"][obj_id]:
+            ant_data = sionna_structure["object_and_antennas"][obj_id][ant_id_tx]
+            tx_power_dbm = ant_data.get("tx_power_dbm")
+            break
+
+    if verbose:
+        print("Tx power for {}: {}".format(ant_id_tx, tx_power_dbm))
+
+    if path_loss != 404:
+        rssi = tx_power_dbm - path_loss
     else:
-        tx_power_dbm = 0
-    print("Tx power for {}: {}".format(tx_id, tx_power_dbm))
-    rssi = tx_power_dbm - path_loss
+        rssi = -300 
 
     return rssi

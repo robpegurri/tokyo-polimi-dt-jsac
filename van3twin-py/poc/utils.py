@@ -45,6 +45,8 @@ def move_object(ref_obj_id=None, position=None, heading_angle=None, velocity=Non
 
     # Invalidate cached paths
     sionna_structure["rays_cache"] = {}
+    if verbose:
+        print(f"     [DEBUG] Invalidated rays cache due to movement of object {ref_obj_id}.")
 
     # Move the antennas mounted on the object
     if ref_obj_id in sionna_structure["object_and_antennas"]:
