@@ -22,14 +22,14 @@ def compute_rays(sionna_structure):
     a_real, a_imag = paths.a
     path_coefficients = a_real.numpy() + 1j * a_imag.numpy()
 
-    transmitters = [30, 31, 5, 6]
-    receivers = [1, 2, 40, 7]
-
+    # Let us map transmitters and receivers to their indices in the path solver output
+    transmitters = sionna_structure["transmitters"]
+    receivers = sionna_structure["receivers"]
     tx_to_idx = {tx_id: i for i, tx_id in enumerate(transmitters)}
     rx_to_idx = {rx_id: i for i, rx_id in enumerate(receivers)}
 
     # path_coefficients shape: [num_rx, num_rx_ant, num_tx, num_tx_ant, num_paths]
-    links = [(30, 1), (30, 7), (6, 40), (5, 2)]
+    links = sionna_structure["links"] 
 
     if "rays_cache" not in sionna_structure:
         sionna_structure["rays_cache"] = {}
@@ -39,11 +39,12 @@ def compute_rays(sionna_structure):
         ri = rx_to_idx[rx_id]
         coeffs = path_coefficients[ri, 0, ti, 0, :]
         active = coeffs[coeffs != 0]
-        #print(f"Tx {tx_id} -> Rx {rx_id}: {len(active)} active paths out of {len(coeffs)}")
-        #print(f"  Coefficients: {active}\n")
+        if sionna_structure["verbose"]:
+            print(f"     [DEBUG] Path Solver found {len(active)} active paths for Tx {tx_id} -> Rx {rx_id}.")
 
         if tx_id not in sionna_structure["rays_cache"]:
             sionna_structure["rays_cache"][tx_id] = {}
+
         sionna_structure["rays_cache"][tx_id][rx_id] = {"path_coefficients": active}
 
     return sionna_structure["rays_cache"]
@@ -57,7 +58,7 @@ def compute_rssi(ant_id_tx, ant_id_rx, sionna_structure):
     time_checker = sionna_structure["time_checker"]
 
     if verbose:
-        print(f"Calculating path loss for object {ant_id_tx} -> object {ant_id_rx} in get_path_loss()...")
+        print(f"    [DEBUG] Calculating path loss for object {ant_id_tx} -> object {ant_id_rx} in get_path_loss()...")
 
     # Safety checks
     if ant_id_tx not in sionna_structure["transmitters"]:
@@ -73,7 +74,7 @@ def compute_rssi(ant_id_tx, ant_id_rx, sionna_structure):
 
     if ant_id_tx not in rc.keys():
         if verbose:
-            print(f"    [WARN] No cached rays for {ant_id_tx}-{ant_id_rx}, calling compute_rays()...")
+            print(f"    [DEBUG] No cached rays for {ant_id_tx}-{ant_id_rx}, calling compute_rays()...")
         compute_rays(sionna_structure)
         rc = sionna_structure["rays_cache"]  # re-read after recompute
 
@@ -110,7 +111,7 @@ def compute_rssi(ant_id_tx, ant_id_rx, sionna_structure):
             break
 
     if verbose:
-        print("Tx power for {}: {}".format(ant_id_tx, tx_power_dbm))
+        print(f"    [DEBUG] Retrieved tx power for {ant_id_tx}, is: {tx_power_dbm} dBm")
 
     if path_loss != 404:
         rssi = tx_power_dbm - path_loss

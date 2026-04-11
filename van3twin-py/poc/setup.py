@@ -10,7 +10,20 @@ frame_num = 0
 
 sionna_structure["run_type"] = "real-time" # or "simulation"
 
-def setup_scene(file_name, frequency, bandwidth, verbose=False, time_checker=False):
+def setup_scenario(file_name, frequency, bandwidth, verbose=False, time_checker=False):
+    '''
+    Sets up the Sionna RT scene by loading the 3D model and applying the specified frequency and bandwidth. 
+    Also initializes verbose and time checker settings in the sionna_structure for later use in other functions.
+
+    Takes the following parameters as input:
+        - **file_name**: the path to .xml file for the Mitsuba3 scenario
+        - **frequency**: the carrier frequency in Hz (e.g., 28e9 for 28 GHz)
+        - **bandwidth**: the bandwidth in Hz (e.g., 100e6 for 100 MHz)
+        - **verbose**: whether to enable verbose logging (default: False)
+        - **time_checker**: whether to enable timing measurements for performance analysis (default: False)
+
+    Returns the loaded _sionna.rt.Scene_ object.
+    '''
     # Import scene
     sionna_structure["scene"] = load_scene(filename=file_name, merge_shapes=True, merge_shapes_exclude_regex="car")
 
@@ -33,17 +46,63 @@ def setup_scene(file_name, frequency, bandwidth, verbose=False, time_checker=Fal
     return sionna_structure["scene"]
 
 
+def setup_coordinate_systems(ref_sionna_x=162.396, ref_sionna_y=85.782,
+                             ref_external_x=-13524.5, ref_external_y=-43817.64):
+    '''
+    Sets up the coordinate systems by defining the offset between the Sionna RT coordinates and the external coordinates 
+    (e.g., Tokyo Mobility DT) based on a reference point. This allows to convert positions between the two coordinate systems.
+    
+    For the _ookayama_full_flat.xml_ and the Tokyo Mobility DT, taking as reference the righ corner of the porch of the main 
+    building (facing north)
+
+            North (toward trees)
+           - - - - - - - - - -  X (height around 7 meters)
+          |                     |               
+          |                     |               Sionna RT = (162.396, 85.782, 7.310)
+    - - - - - - - - - - - - - - - - - -         Tokyo Mobility DT = (-13524.5, z=3817.64)
+                  South
+    
+    '''
+
+    off_x = ref_sionna_x - ref_external_x # Tokyo Mobility DT calls this "x"
+    off_y = ref_sionna_y - ref_external_y # Tokyo Mobility DT calls this "z"
+
+    # Usage: sionna_position = (external_x + off_x, external_y + off_y, external_z)
+    sionna_structure["coordinate_offset"] = [off_x, off_y]
+
+    return
+
 def setup_antenna_type(transmitters, receivers,
                        num_rows=1, num_cols=1, vertical_spacing=0.5, horizontal_spacing=0.5, 
                        pattern="dipole", polarization="VH", elevation_csv=None, azimuth_csv=None,
-                       simulate_perfect_beamforming=False):
+                       simulate_perfect_beamforming=True, use_look_at_ideal_pointing=False, beam_sweeping_angle=60):
+    '''
+    Sets up the antenna type and parameters for the transmitters and receivers in the scenario.
+    
+    Takes the following parameters as input:
+        - **transmitters**: list of antenna IDs to be set as transmitters (e.g., [30, 31, 5, 6])
+        - **receivers**: list of antenna IDs to be set as receivers (e.g., [1, 2, 40, 7])
+        - **num_rows**: number of rows in the planar array (default: 1)
+        - **num_cols**: number of columns in the planar array (default: 1)
+        - **vertical_spacing**: vertical spacing between elements in wavelengths (default: 0.5)
+        - **horizontal_spacing**: horizontal spacing between elements in wavelengths (default: 0.5)
+        - **pattern**: antenna pattern to use (default: "dipole", use "load_custom" for custom pattern defined by _elevation_csv_ and _azimuth_csv_)
+        - **polarization**: polarization of the antenna (default: "VH", other options: "H", "V")
+        - **elevation_csv**: path to CSV file containing elevation pattern values (required if pattern is "load_custom")
+        - **azimuth_csv**: path to CSV file containing azimuth pattern values (required if pattern is "load_custom")
+        - **simulate_perfect_beamforming**: whether to simulate perfect beamforming by dynamically updating antenna orientations to point toward their peer (default: True)
+        - **use_look_at_ideal_pointing**: whether to use the look_at() property of the Radio Device object to point antennas toward their ideal peer position for perfect beamforming simulation, instead of manually calculating the angles on the sole sweeping plane (default: False)
+        - **beam_sweeping_angle**: the beam sweeping angle in degrees defined as [-beam_sweeping_angle, beam_sweeping_angle] used for perfect beamforming simulation (default: 60, meaning [-60°, +60°])
+        '''
 
     sionna_structure["transmitters"] = transmitters
     sionna_structure["receivers"] = receivers
     sionna_structure["simulate_perfect_beamforming"] = simulate_perfect_beamforming
+    sionna_structure["use_look_at_ideal_pointing"] = use_look_at_ideal_pointing
+    sionna_structure["beam_sweeping_angle"] = beam_sweeping_angle
 
     # Custom antenna pattern - Panasonic 60 GHz WiGig RSU
-    if pattern == "panasonic_wigig_rsu":
+    if pattern == "load_custom":
         if elevation_csv is None or azimuth_csv is None:
             print("     [ERROR] Custom pattern selected but elevation or azimuth CSV files not provided.")
         else:
@@ -61,6 +120,28 @@ def setup_antenna_type(transmitters, receivers,
     return
 
 
+def setup_wireless_links(wireless_links=None):
+    '''
+    Sets up the links between transmitters and receivers.
+
+    Takes the following parameters as input:
+        - **wireless_links**: list of tuples (tx_ant_id, rx_ant_id) representing the wireless links between transmitters and receivers
+    '''
+
+    # Safety check to ensure specified links are between defined transmitters and receivers
+    for tx_id, rx_id in wireless_links:
+        if tx_id not in sionna_structure["transmitters"]:
+            print(f"     [ERROR] Tx antenna {tx_id} in wireless_links was not defined as a transmitter in setup_antenna_type()!")
+            return
+        if rx_id not in sionna_structure["receivers"]:
+            print(f"     [ERROR] Rx antenna {rx_id} in wireless_links was not defined as a receiver in setup_antenna_type()!")
+            return
+
+    sionna_structure["links"] = wireless_links
+
+    return
+
+
 def setup_rt(rt_max_depth=5,
                  rt_max_num_paths_per_src=1e10,
                  rt_samples_per_src=1e10,
@@ -71,7 +152,23 @@ def setup_rt(rt_max_depth=5,
                  rt_diffraction=False,
                  rt_corner_diffraction=False,
                  rt_sbr_seed=42,
-                 rt_synthetic_array=False):
+                 rt_synthetic_array=True):
+    '''
+    Sets up the ray tracing parameters for the scenario.
+
+    Takes the following parameters as input:
+        - **rt_max_depth**: maximum ray tracing depth (default: 5)
+        - **rt_max_num_paths_per_src**: maximum number of paths per source (default: 1e10)
+        - **rt_samples_per_src**: number of samples per source (default: 1e10)
+        - **rt_los**: whether to consider line-of-sight paths (default: True)
+        - **rt_specular_reflection**: whether to consider specular reflection (default: True)
+        - **rt_diffuse_reflection**: whether to consider diffuse reflection (default: True)
+        - **rt_refraction**: whether to consider refraction (default: True)
+        - **rt_diffraction**: whether to consider diffraction (default: False)
+        - **rt_corner_diffraction**: whether to consider corner diffraction (default: False)
+        - **rt_sbr_seed**: seed for the SBR (default: 42)
+        - **rt_synthetic_array**: whether to use a synthetic array approximation (default: True)
+    '''
     
     sionna_structure["path_solver"] = PathSolver()
 
@@ -135,38 +232,53 @@ def setup_filters(transmitters,
     return
 
 
-def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, orientation, mounted_vertically=False, tx_power_dbm=None):
-
+def mount_antenna_on_object (ref_obj_id, ant_id, displacement, orientation, mounted_vertically=False, tx_power_dbm=None):
     '''
-        Parameters:
-        - ref_obj_id: the reference numerical object ID
-        - ant_id: the numerical antenna ID
-        - peer_antenna_id: the id of the other antenna to which it is bounded
-        - displacement: the 3D displacement of the antenna from the reference point on the object [dx, dy, dz]
-        - orientation: the orientation of the antenna relative to the object [alpha, theta, phi]
-        - mounted_vertically: whether the antenna is mounted vertically
+    Adds an antenna to the scenario and mounts it on a reference object (e.g., a car) with a specified displacement and orientation relative to the object's reference point, defined as 
+    the position you can get from _scene.get(f"obj_{ref_obj_id}").position_.
+    
+    Takes the following parameters as input:
+        - **ant_id**: the numerical antenna ID
+        - **displacement**: the 3D displacement of the antenna from the reference point on the object `[dx, dy, dz]`
+        - **orientation**: the orientation of the antenna relative to the object `[alpha, theta, phi]`
+        - **mounted_vertically**: whether the antenna is mounted vertically or not (necessary for proper beam sweeping simulation, default: False, meaning the antenna is mounted horizontally with the main lobe sweeping in the horizontal plane parallel to the ground)
+        - **tx_power_dbm**: the transmit power in dBm (required if the antenna is a transmitter)
 
-        - tx_power_dbm: the transmit power in dBm (required if the antenna is a transmitter)
+    It results in the creation of the following structure in `sionna_structure`:
 
-        Output:
-        sionna_structure["object_and_antennas"] = {
-            ref_obj_id: {
-                ant_id: {
-                    "ant_id": ant_id,
-                    "peer_antenna_id": peer_antenna_id,
-                    "displacement": [dx, dy, dz],
-                    "orientation": [alpha, theta, phi],
-                    "tx_power_dbm": tx_power_dbm,
-                    "mounted_vertically": mounted_vertically
-                },
-                ...
+    ```python
+    sionna_structure["object_and_antennas"] = {
+        ref_obj_id: {
+            ant_id: {
+                "ant_id": ant_id,
+                "peer_antenna_id": peer_antenna_id, # as defined with setup_wireless_links()
+                "displacement": [dx, dy, dz],
+                "orientation": [alpha, theta, phi],
+                "tx_power_dbm": tx_power_dbm,
+                "mounted_vertically": mounted_vertically
             },
-            ...
-        }
+            # ...
+        },
+        # ...
+    }
+    ```
     '''
 
+    links = sionna_structure.get("links", [])
+    peer_antenna_id = None
+    for tx_id, rx_id in links:
+        if ant_id == tx_id:
+            print(f"     [INFO] Found peer antenna for Tx {ant_id} in wireless_links: its Rx is {rx_id}. Perfect beamforming simulation will be applied between these two antennas.")
+            peer_antenna_id = rx_id
+            break
+        elif ant_id == rx_id:
+            print(f"     [INFO] Found peer antenna for Rx {ant_id} in wireless_links: its Tx is {tx_id}. Perfect beamforming simulation will be applied between these two antennas.")
+            peer_antenna_id = tx_id
+            break
+
+    # Safety checks
     if sionna_structure["simulate_perfect_beamforming"] and peer_antenna_id is None:
-        print(f"     [ERROR] Perfect beamforming simulation requires a peer antenna ID to be specified for {ant_id}.")
+        print(f"     [ERROR] This antenna has no peer antenna defined in the wireless links. Check the wireless_links parameter in setup_wireless_links() to ensure all antennas have their peer defined for perfect beamforming simulation.")
         return
     
     if sionna_structure["simulate_perfect_beamforming"] == False and orientation is None:
@@ -174,7 +286,7 @@ def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, 
         return
 
     if ant_id in sionna_structure["transmitters"] and tx_power_dbm is None:
-        print(f"     [ERROR] {ant_id} is defined as a Transmitter: Tx power (dBm) must be provided.")
+        print(f"     [ERROR] {ant_id} is defined as a Transmitter: Tx power (dBm) must be provided!")
         return
     
     if "object_and_antennas" not in sionna_structure:
@@ -197,21 +309,33 @@ def setup_antenna_on_object (ref_obj_id, ant_id, peer_antenna_id, displacement, 
             "ant_id": ant_id,
             "peer_antenna_id": peer_antenna_id,
             "displacement": displacement,
-            "orientation": orientation,   # stored AFTER roll correction so point_toward_peer preserves it
+            "initial_orientation": list(orientation),  # body-frame original, never overwritten
+            "orientation": list(orientation),          # current world-frame orientation, updated on each move
             "tx_power_dbm": tx_power_dbm,
             "mounted_vertically": mounted_vertically
         }
 
     if ant_id in sionna_structure["transmitters"]:
         scene.tx_array = sionna_structure["planar_array"]
-        scene.add(Transmitter(f"ant_{ant_id}", position=ant_position, orientation=orientation, display_radius=1))
+        scene.add(Transmitter(f"ant_{ant_id}", position=ant_position, orientation=orientation, display_radius=0.3))
 
     if ant_id in sionna_structure["receivers"]:
         scene.rx_array = sionna_structure["planar_array"]
-        scene.add(Receiver(f"ant_{ant_id}", position=ant_position, orientation=orientation, display_radius=1))
+        scene.add(Receiver(f"ant_{ant_id}", position=ant_position, orientation=orientation, display_radius=0.3))
 
 
 def add_object(ref_obj_id=None, mesh_path=None, position=None):
+    '''
+    Adds an object (e.g., a car or a RSU) to the scenario by loading its mesh and placing it at the specified position. 
+    The object is identified by a reference ID that is used to link it to the antennas mounted on it for motion simulation.
+
+    Takes the following parameters as input:
+        - **ref_obj_id**: the reference numerical object ID
+        - **mesh_path**: the path to the object's mesh file (e.g., .obj)
+        - **position**: the initial position of the object in the scene [x, y, z]
+
+    Returns the created _sionna.rt.SceneObject_ called **obj_{ref_obj_id}** (e.g., `obj_1`) representing the scene object.
+    '''
 
     scene = sionna_structure["scene"]
 
@@ -236,6 +360,17 @@ def add_object(ref_obj_id=None, mesh_path=None, position=None):
 
 
 def add_tree(ref_tree_id=None, mesh_path=None, position=None):
+    '''
+    Adds a tree to the scenario by loading its mesh and placing it at the specified position. 
+    The tree is identified by a reference ID.
+
+    Takes the following parameters as input:
+        - **ref_tree_id**: the reference numerical tree ID
+        - **mesh_path**: the path to the tree's _.ply_ mesh file
+        - **position**: the position of the tree in the scene [x, y, z]
+
+    Creates a _sionna.rt.SceneObject_ called **tree_{ref_tree_id}** (e.g., `tree_1`) representing the tree with a radio material that simulates wood, and adds it to the scene.
+    '''
 
     tree_mesh = load_mesh(mesh_path)
     tree_obj = SceneObject(mi_mesh=tree_mesh,
@@ -255,10 +390,21 @@ def add_tree(ref_tree_id=None, mesh_path=None, position=None):
     return
 
 
-def startup():
+def startup(port=None):
+    '''
+    Configures the initial settings for the communication with the Tokyo Digital Twin for the PoC application.
+
+    Takes the following parameters as input:
+        - **port**: the UDP port to listen to for incoming messages from the Tokyo Digital Twin
+
+    Returns the global `sionna_structure` dictionary, necessary input for many other functions. 
+    '''
 
     # Integration
-    port = 35944
+    if port is None:
+        print("     [ERROR] UDP port must be specified.")
+        return
+    
     sionna_structure["position_threshold"] = 0.01
     sionna_structure["angle_threshold"] = 0.01
 
@@ -307,38 +453,6 @@ def startup():
             writer = csv.writer(file)
             writer.writerow(log_columns)
     '''
-
-    # Manual override of the configuration!
-    configuration = {"data": []}
-    configuration["data"].append({
-        "type": "RT_CONFIGURATION_MESSAGE",
-        "max_depth": 30,
-        "max_num_paths_per_src": 10e10,
-        "samples_per_src": 10e10,
-        "los": True,
-        "specular_reflection": True,
-        "diffuse_reflection": True,
-        "refraction": True,
-        "diffraction": True,
-        "corner_diffraction": True,
-        "seed": 42,
-        # Kalman filter parameters
-        "use_kalman_filter": True,
-        "kalman_process_var": 0.3, # 
-        "kalman_meas_var": 0.8,    # Lower = trust measurement more
-        "kalman_rt_var": 3,       # Higher = trust RT less
-        # Monte Carlo parameters
-        "montecarlo_realizations": 0,
-        "montecarlo_max_position_jitter": 0,
-        # Adaptive bias filter parameters
-        "use_adaptive_bias_filter": False,
-        "adaptive_bias_alpha_signal": 0.5,
-        "adaptive_bias_alpha_bias": 0.6,
-        "restart_log": False,
-        "new_log_name": ""
-    })
-    
-    #manage_online_reconfiguration(configuration["data"], sionna_structure, is_manual_override=True)
 
     if sionna_structure["bandwidth"] is None:
         print("     [WARNING] Bandwidth not set. Defaulting to 100 MHz.")
