@@ -21,6 +21,8 @@ def compute_rays(sionna_structure):
     # Extract path coefficients and organize them by Tx-Rx pairs
     a_real, a_imag = paths.a
     path_coefficients = a_real.numpy() + 1j * a_imag.numpy()
+    interactions = paths.interactions.numpy()
+    valid = paths.valid.numpy()
 
     # Let us map transmitters and receivers to their indices in the path solver output
     transmitters = sionna_structure["transmitters"]
@@ -39,13 +41,20 @@ def compute_rays(sionna_structure):
         ri = rx_to_idx[rx_id]
         coeffs = path_coefficients[ri, 0, ti, 0, :]
         active = coeffs[coeffs != 0]
+
+        valid_mask = valid[ri, 0, ti, 0, :].astype(bool)
+        interaction_types = interactions[:, ri, 0, ti, 0, :]
+        interaction_types_masked = interaction_types[:, valid_mask]
+        is_los = np.any(interaction_types_masked[0] == 0)
+        
         if sionna_structure["verbose"]:
             print(f"     [DEBUG] Path Solver found {len(active)} active paths for Tx {tx_id} -> Rx {rx_id}.")
 
         if tx_id not in sionna_structure["rays_cache"]:
             sionna_structure["rays_cache"][tx_id] = {}
 
-        sionna_structure["rays_cache"][tx_id][rx_id] = {"path_coefficients": active}
+        sionna_structure["rays_cache"][tx_id][rx_id] = {"path_coefficients": active, 
+                                                        "is_los": is_los}
 
     return sionna_structure["rays_cache"]
 
@@ -119,3 +128,13 @@ def compute_rssi(ant_id_tx, ant_id_rx, sionna_structure):
         rssi = -300 
 
     return rssi
+
+
+def compute_los_status (ant_id_tx, ant_id_rx, sionna_structure):
+
+    rays_cache = sionna_structure["rays_cache"]
+
+    if ant_id_tx in rays_cache and ant_id_rx in rays_cache[ant_id_tx]:
+        is_los = rays_cache[ant_id_tx][ant_id_rx].get("is_los", False)
+        return is_los
+    return False

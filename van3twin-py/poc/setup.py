@@ -1,8 +1,12 @@
 import socket
 from antennas.custom_antenna import extract_custom_pattern
 from sionna.rt import PathSolver, Camera, PlanarArray, load_scene, load_mesh, SceneObject, ITURadioMaterial, Receiver, Transmitter
-from core.filters import RSSIKalmanFilter, AdaptiveBiasFilter
+from poc.filters import MovingAverageFilter
 import numpy as np
+import math
+import csv
+import time
+import os
 
 sionna_structure = dict()
 ray_tracing_time_ms = 0
@@ -71,6 +75,7 @@ def setup_coordinate_systems(ref_sionna_x=162.396, ref_sionna_y=85.782,
     sionna_structure["coordinate_offset"] = [off_x, off_y]
 
     return
+
 
 def setup_antenna_type(transmitters, receivers,
                        num_rows=1, num_cols=1, vertical_spacing=0.5, horizontal_spacing=0.5, 
@@ -189,46 +194,22 @@ def setup_rt(rt_max_depth=5,
 
 def setup_filters(transmitters, 
                       receivers,
-                      use_kalman_filter=False,        # Kalman filter parameters
-                      kalman_process_var=0.3, 
-                      kalman_meas_var=0.8, 
-                      kalman_rt_var=3,
-                      use_adaptive_bias_filter=False, # Adaptive bias filter parameters
-                      adaptive_bias_alpha_signal=0.1, 
-                      adaptive_bias_alpha_bias=0.05):
+                      use_moving_average_filter=False,
+                      moving_average_window_size=10):
     
-    if use_kalman_filter == use_adaptive_bias_filter == False:
+    if use_moving_average_filter == False:
         print("     [WARNING] No filter selected. RT predictions will be used as-is without any filtering.")
-
-    if use_kalman_filter and use_adaptive_bias_filter:
-        print("     [ERROR] A single filter can be used at a time.")
-        return
     
     sionna_structure["filters"] = {}
-    
-    if use_kalman_filter:
-        sionna_structure["use_kalman_filter"] = True
-
-        for tx in transmitters:
-            for rx in receivers:
-                sionna_structure["filters"][(f"{tx}", f"{rx}")] = RSSIKalmanFilter(process_var=kalman_process_var, 
-                                                                         meas_var=kalman_meas_var, 
-                                                                         rt_var=kalman_rt_var)
-                sionna_structure["filters"][(f"{rx}", f"{tx}")] = RSSIKalmanFilter(process_var=kalman_process_var, 
-                                                                         meas_var=kalman_meas_var, 
-                                                                         rt_var=kalman_rt_var)
                 
-    
-    if use_adaptive_bias_filter:
-        sionna_structure["use_adaptive_bias_filter"] = True
-
+    if use_moving_average_filter:
+        sionna_structure["use_moving_average_filter"] = True
+        sionna_structure["moving_average_window_size"] = moving_average_window_size
         for tx in transmitters:
             for rx in receivers:
-                sionna_structure["filters"][(f"{tx}", f"{rx}")] = AdaptiveBiasFilter(alpha_signal=adaptive_bias_alpha_signal, 
-                                                                                     alpha_bias=adaptive_bias_alpha_bias)
-                sionna_structure["filters"][(f"{rx}", f"{tx}")] = AdaptiveBiasFilter(alpha_signal=adaptive_bias_alpha_signal, 
-                                                                                     alpha_bias=adaptive_bias_alpha_bias)
-    
+                if sionna_structure["verbose"]:
+                    print(f"     [INFO] Setting up Moving Average Filter with window size {moving_average_window_size} for ('{tx}', '{rx}')")
+                sionna_structure["filters"][(f"{tx}", f"{rx}")] = MovingAverageFilter(window_size=moving_average_window_size)
     return
 
 
@@ -413,6 +394,10 @@ def startup(port=None):
     sionna_structure["delay_cache"] = {}
     sionna_structure["last_path_loss_requested"] = None
 
+    # Filter data
+    sionna_structure["use_filter"] = None
+    sionna_structure["filter_window_size"] = None
+
     # Set up UDP socket
     if sionna_structure["run_type"] == "real-time":
         udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -434,25 +419,27 @@ def startup(port=None):
 
     sionna_structure["my_cam"] = Camera(position=[-50,30,100], look_at=[-39.4388, 45.5538, 0.541952])
 
-    '''
     # Handle logging
     t_for_log = math.trunc(time.time())
     sionna_structure["log_file"] = f"tokyo-poc-sionna-log_{t_for_log}.csv"
     log_columns = [
-        "local_unix_timestamp", "dt_current_clock", "prediction_clock",
-        "json_payload",
+        "local_unix_timestamp", "dt_current_clock", "prediction_horizon",
+        "json_payload", "json_reply"
         "car_1_predicted_x", "car_1_predicted_y", "car_1_predicted_yaw",
         "car_2_predicted_x", "car_2_predicted_y", "car_2_predicted_yaw",
-        "car_3_predicted_x", "car_3_predicted_y", "car_3_predicted_yaw",
-        "raw_predicted_rssi_1_2", "raw_predicted_rssi_1_3", "raw_predicted_rssi_2_3",
-        "filtered_predicted_rssi_1_2", "filtered_predicted_rssi_1_3", "filtered_predicted_rssi_2_3",
-        "location_update_time_ms", "rssi_prediction_time_ms", "total_elapsed_time_ms", "los_1_2", "los_1_3", "los_2_3"
+        "raw_predicted_rssi_5_2", "raw_predicted_rssi_6_40", "raw_predicted_rssi_30_1", "raw_predicted_rssi_31_7",
+        "filtered_predicted_rssi_5_2", "filtered_predicted_rssi_6_40", "filtered_predicted_rssi_30_1", "filtered_predicted_rssi_31_7",
+        "los_5_2", "los_6_40", "los_30_1", "los_31_7",
+        "location_update_time_ms", "rssi_prediction_time_ms", "total_elapsed_time_ms"
     ]
+
+    sionna_structure["csv_log_columns"] = log_columns
+
     if not os.path.exists(sionna_structure["log_file"]):
         with open(sionna_structure["log_file"], mode="w", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(log_columns)
-    '''
+
 
     if sionna_structure["bandwidth"] is None:
         print("     [WARNING] Bandwidth not set. Defaulting to 100 MHz.")

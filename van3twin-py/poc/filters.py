@@ -17,6 +17,8 @@ Call .step() once per time interval, in order.
 measurement=None means the field value was unavailable this step (RSSI == 0).
 """
 
+from collections import deque
+
 
 class EWMAFilter:
     """
@@ -150,3 +152,46 @@ class KalmanFilter:
         self._P = (1 - K) * P
 
         return self._x
+
+
+class MovingAverageFilter:
+    """
+    Sliding window over on-field measurements, averaged together with the
+    current RT prediction to produce the filtered RSSI.
+
+    On each step the filter does one of two things with the measurement slot:
+      - measurement provided  → push it into the window.
+      - measurement=None      → recycle: the most recent stored value is
+                                repeated (assumes RSSI did not change).
+
+    The output is the mean of every value currently in the window plus the
+    RT prediction for the current step.  While the window is still empty
+    (no field measurements received yet) the output degrades to the raw RT
+    prediction alone.
+
+    Parameters
+    ----------
+    window_size : int
+        Maximum number of on-field measurements to retain.  Older entries
+        are evicted as new ones arrive.
+    """
+
+    def __init__(self, window_size=5):
+        self.window_size = window_size
+        self._window: deque = deque(maxlen=window_size)
+
+    @property
+    def measurements(self):
+        """Current field-measurement window as a list (oldest → newest)."""
+        return list(self._window)
+
+    def step(self, rt_prediction, measurement=None):
+        if measurement is not None:
+            self._window.append(measurement)
+        elif self._window:
+            # No reading this step: repeat the last known value
+            self._window.append(self._window[-1])
+        # else: window still empty — leave it alone
+
+        values = list(self._window) + [rt_prediction]
+        return sum(values) / len(values)

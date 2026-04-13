@@ -205,16 +205,8 @@ def manage_online_reconfiguration(msg_entries, sionna_structure, is_manual_overr
         if new_log_name is not None:  
             sionna_structure["log_file"] = f"{new_log_name}.csv"
 
-        log_columns = [
-            "local_unix_timestamp", "dt_current_clock", "prediction_clock",
-            "json_payload",
-        "car_1_predicted_x", "car_1_predicted_y", "car_1_predicted_yaw",
-        "car_2_predicted_x", "car_2_predicted_y", "car_2_predicted_yaw",
-        "car_3_predicted_x", "car_3_predicted_y", "car_3_predicted_yaw",
-        "raw_predicted_rssi_1_2", "raw_predicted_rssi_1_3", "raw_predicted_rssi_2_3",
-        "filtered_predicted_rssi_1_2", "filtered_predicted_rssi_1_3", "filtered_predicted_rssi_2_3",
-        "location_update_time_ms", "rssi_prediction_time_ms", "total_elapsed_time_ms", "los_1_2", "los_1_3", "los_2_3"
-    ]
+        log_columns = sionna_structure["csv_log_columns"]
+        
     if not os.path.exists(sionna_structure["log_file"]):
         with open(sionna_structure["log_file"], mode="w", newline="") as file:
             writer = csv.writer(file)

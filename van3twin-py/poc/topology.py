@@ -1,7 +1,11 @@
 import poc.rt as rt
 import time
 
-def evaluate_best_topology(sionna_structure=None, margin_dbm=5):
+def evaluate_best_topology(sionna_structure=None, margin_dbm=5,
+                           rssi_5vs2=None, 
+                           rssi_6vs40=None, 
+                           rssi_30vs1=None, 
+                           rssi_31vs7=None):
     '''
     Possible routes we have to compare:
 
@@ -53,10 +57,9 @@ def evaluate_best_topology(sionna_structure=None, margin_dbm=5):
 
     # Case a) Car 2 -> Car 1
     # V2V
-    rssi_5_2 = float(rt.compute_rssi(5, 2, sionna_structure=sionna_structure))
-    # V2I and I2V
-    rssi_6_40 = float(rt.compute_rssi(6, 40, sionna_structure=sionna_structure))
-    rssi_30_1 = float(rt.compute_rssi(30, 1, sionna_structure=sionna_structure))
+    rssi_5_2 = float(rssi_5vs2) if rssi_5vs2 is not None else float(rt.compute_rssi(5, 2, sionna_structure=sionna_structure))
+    rssi_6_40 = float(rssi_6vs40) if rssi_6vs40 is not None else float(rt.compute_rssi(6, 40, sionna_structure=sionna_structure))
+    rssi_30_1 = float(rssi_30vs1) if rssi_30vs1 is not None else float(rt.compute_rssi(30, 1, sionna_structure=sionna_structure))
     min_rssi_v2i_i2v = min(rssi_6_40, rssi_30_1)
 
     topologies["Topology_Vehicle2_1"] = {
@@ -89,9 +92,9 @@ def evaluate_best_topology(sionna_structure=None, margin_dbm=5):
 
     # Case b) RSU -> Car 1
     # V2V
-    rssi_30_1 = float(rt.compute_rssi(30, 1, sionna_structure=sionna_structure))
+    rssi_30_1 = float(rssi_30vs1) if rssi_30vs1 is not None else float(rt.compute_rssi(30, 1, sionna_structure=sionna_structure))
     # I2V and V2V
-    rssi_31_7 = float(rt.compute_rssi(31, 7, sionna_structure=sionna_structure))
+    rssi_31_7 = float(rssi_31vs7) if rssi_31vs7 is not None else float(rt.compute_rssi(31, 7, sionna_structure=sionna_structure))
     min_rssi_i2v_v2v = min(rssi_31_7, rssi_5_2)
 
     topologies["Topology_RSU_Vehicle1"] = {

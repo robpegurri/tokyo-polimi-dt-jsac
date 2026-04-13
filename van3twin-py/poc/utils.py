@@ -1,6 +1,10 @@
 import math
 import numpy as np
 import time
+import json
+import csv
+import os
+import poc.setup as poc
 
 def move_object(ref_obj_id=None, position=None, ref_system="external", heading_angle=None, velocity=None, sionna_structure=None):
     '''
@@ -51,8 +55,18 @@ def move_object(ref_obj_id=None, position=None, ref_system="external", heading_a
         print(f"     [ERROR] Object {ref_obj_id} (obj_{ref_obj_id}) not found in the scene.")
         return
     obj.position = position
+    
+    # Update local position database
+    if ref_obj_id not in sionna_structure["sionna_location_db"]:
+        sionna_structure["sionna_location_db"][ref_obj_id] = {}
+
+    sionna_structure["sionna_location_db"][ref_obj_id]['x'] = position[0]
+    sionna_structure["sionna_location_db"][ref_obj_id]['y'] = position[1]
+    sionna_structure["sionna_location_db"][ref_obj_id]['z'] = position[2]
+
     # Car meshes are created with opposite orientation: we need to apply a 180° rotation to align the heading with the movement direction
     obj.orientation = [car_angle_rad - math.pi, 0, 0]
+    sionna_structure["sionna_location_db"][ref_obj_id]['angle'] = car_angle_rad - math.pi
 
     # Invalidate cached paths
     sionna_structure["rays_cache"] = {}
@@ -204,3 +218,121 @@ def can_beamform(ant_1_id, ant_2_id, sionna_structure):
         
     # It must be true for both
     return check_direction(ant_1_id, ant_2_id) and check_direction(ant_2_id, ant_1_id)
+
+
+def manage_online_reconfiguration(msg_entries, sionna_structure, is_manual_override=False):
+
+    print(" ")
+    print("  - - - - - - - - - - - - - - - - -   CONFIGURATION REQUEST   - - - - - - - - - - - - - - - - -  ")
+    print(" ")
+
+    cfg_keys = [
+        "max_depth", "max_num_paths_per_src", "samples_per_src",
+        "los", "specular_reflection", "diffuse_reflection",
+        "refraction", "diffraction", "corner_diffraction", "seed", 
+        "use_filter", "filter_window_size", 
+        "restart_log", "new_log_name"
+    ]
+    bool_keys = {
+        "los", "specular_reflection", "diffuse_reflection",
+        "refraction", "diffraction", "corner_diffraction",
+        "restart_log"
+    }
+
+    applied_changes = []
+    config_dicts = []
+    response = [{}]
+    filter = None
+    restart_log = None
+    new_log_name = None
+
+    for entry in msg_entries:
+        if not isinstance(entry, dict):
+            continue
+        if "data" in entry and isinstance(entry["data"], list):
+            for d in entry["data"]:
+                if isinstance(d, dict) and any(k in d for k in cfg_keys):
+                    config_dicts.append(d)
+        if any(k in entry for k in cfg_keys):
+            config_dicts.append(entry)
+
+    for cfg in config_dicts:
+        for k in cfg_keys:
+            if k not in cfg:
+                continue
+            v = cfg[k]
+            if v == -1:
+                continue
+            if k in bool_keys:
+                if isinstance(v, (int, float)):
+                    new_v = bool(int(v))
+                elif isinstance(v, str):
+                    new_v = v.lower() in ("1", "true", "yes")
+                else:
+                    new_v = bool(v)
+            else:
+                new_v = v
+            
+            #print(f"        Changing RT config: k={k} from {sionna_structure[k]} to new_v={new_v}")
+            sionna_structure[k] = new_v
+
+            if k in {"use_filter"} and new_v:
+                filter = "moving_average"
+
+            if k == "restart_log" and new_v:
+                restart_log = new_v
+            
+            if k == "new_log_name" and isinstance(new_v, str) and new_v.strip() != "":
+                new_log_name = new_v.strip()
+
+            applied_changes.append((k, new_v))
+
+    if applied_changes:
+        
+        poc.setup_rt(
+            rt_max_depth=sionna_structure["max_depth"],
+            rt_los=sionna_structure["los"],
+            rt_specular_reflection=sionna_structure["specular_reflection"],
+            rt_diffuse_reflection=sionna_structure["diffuse_reflection"],
+            rt_refraction=sionna_structure["refraction"],
+            rt_diffraction=sionna_structure["diffraction"],
+            rt_corner_diffraction=sionna_structure["corner_diffraction"]
+        )
+
+        print("        Applied RT configuration changes:")
+        response[0]["response"] = "200 OK"
+        for k, v in applied_changes: 
+            print(f"        - {k} = {v}")
+            if k in {"kalman_process_var", "kalman_meas_var", "kalman_rt_var"} and filter == "moving_average":
+                print("        Reconfiguring Kalman filters with new parameters.")
+                poc.setup_filters(transmitters=sionna_structure["transmitters"], 
+                                      receivers=sionna_structure["receivers"], 
+                                      use_moving_average_filter=sionna_structure["use_filter"],
+                                      moving_average_window_size=sionna_structure["filter_window_size"],
+                                      sionna_structure=sionna_structure)
+                
+    else:
+        print("        No RT configuration changes applied (all fields were -1 or none provided).")
+        response[0]["response"] = "304 Not Modified"
+
+    if not is_manual_override:
+        response = json.dumps(response, default=lambda o: float(o) if isinstance(o, np.float32) else o)
+        sionna_structure["udp_socket"].sendto(response.encode(), sionna_structure["latest_msg_address"])
+    
+    print(" ")
+    print(f"  - - - - - - - - - - - - - - - - -   Configuration Handled   - - - - - - - - - - - - - - - - -  ")
+
+    if restart_log:
+        t_for_log = math.trunc(time.time())
+        sionna_structure["log_file"] = f"tokyo-poc-sionna-{new_log_name}_{t_for_log}.csv"
+        if new_log_name is not None:  
+            sionna_structure["log_file"] = f"{new_log_name}.csv"
+
+        log_columns = sionna_structure["csv_log_columns"]
+        
+    if not os.path.exists(sionna_structure["log_file"]):
+        with open(sionna_structure["log_file"], mode="w", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(log_columns)
+    
+    return
