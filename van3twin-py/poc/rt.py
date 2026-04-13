@@ -42,10 +42,18 @@ def compute_rays(sionna_structure):
         coeffs = path_coefficients[ri, 0, ti, 0, :]
         active = coeffs[coeffs != 0]
 
-        valid_mask = valid[ri, 0, ti, 0, :].astype(bool)
-        interaction_types = interactions[:, ri, 0, ti, 0, :]
-        interaction_types_masked = interaction_types[:, valid_mask]
-        is_los = np.any(interaction_types_masked[0] == 0)
+        if sionna_structure["synthetic_array"]:
+            valid_mask = valid[ri, ti, :].astype(bool)
+            interaction_types = interactions[:, ri, ti, :]
+            interaction_types_masked = interaction_types[:, valid_mask]
+            is_los = np.any(interaction_types_masked[0] == 0)
+
+        else:
+            valid_mask = valid[ri, 0, ti, 0, :].astype(bool)
+            interaction_types = interactions[:, ri, 0, ti, 0, :]
+            interaction_types_masked = interaction_types[:, valid_mask]
+            is_los = np.any(interaction_types_masked[0] == 0)
+
         
         if sionna_structure["verbose"]:
             print(f"     [DEBUG] Path Solver found {len(active)} active paths for Tx {tx_id} -> Rx {rx_id}.")

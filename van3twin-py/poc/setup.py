@@ -424,12 +424,13 @@ def startup(port=None):
     sionna_structure["log_file"] = f"tokyo-poc-sionna-log_{t_for_log}.csv"
     log_columns = [
         "local_unix_timestamp", "dt_current_clock", "prediction_horizon",
-        "json_payload", "json_reply"
+        "json_payload", "json_reply",
         "car_1_predicted_x", "car_1_predicted_y", "car_1_predicted_yaw",
         "car_2_predicted_x", "car_2_predicted_y", "car_2_predicted_yaw",
         "raw_predicted_rssi_5_2", "raw_predicted_rssi_6_40", "raw_predicted_rssi_30_1", "raw_predicted_rssi_31_7",
         "filtered_predicted_rssi_5_2", "filtered_predicted_rssi_6_40", "filtered_predicted_rssi_30_1", "filtered_predicted_rssi_31_7",
         "los_5_2", "los_6_40", "los_30_1", "los_31_7",
+        "can_bf_5_2", "can_bf_6_40", "can_bf_30_1", "can_bf_31_7",
         "location_update_time_ms", "rssi_prediction_time_ms", "total_elapsed_time_ms"
     ]
 
