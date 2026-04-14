@@ -130,7 +130,7 @@ def move_object(ref_obj_id=None, position=None, ref_system="external", heading_a
                     else:
                         if verbose:
                             print(f"     [DEBUG] Out of beamforming range for ant_{antenna['ant_id']} and its peer ant_{antenna['peer_antenna_id']}.")
-                        antenna_object.orientation = [antenna_angle_rad + initial_orient[0], initial_orient[1], initial_orient[2]]
+                        antenna_object.orientation = np.array([antenna_angle_rad + initial_orient[0], initial_orient[1], initial_orient[2]])
 
                     if time_checker:
                         end_time_bf = time.time() * 1000
@@ -139,7 +139,7 @@ def move_object(ref_obj_id=None, position=None, ref_system="external", heading_a
                 else:
                     if verbose:
                         print(f"     [INFO] Applying fixed orientation for antenna {antenna['ant_id']} with angle offset {antenna_angle} degrees.")
-                    antenna_object.orientation = [antenna_angle_rad + initial_orient[0], initial_orient[1], initial_orient[2]]
+                    antenna_object.orientation = np.array([antenna_angle_rad + initial_orient[0], initial_orient[1], initial_orient[2]])
 
     if time_checker:
         end_time = time.time() * 1000
