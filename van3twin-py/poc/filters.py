@@ -185,13 +185,28 @@ class MovingAverageFilter:
         """Current field-measurement window as a list (oldest → newest)."""
         return list(self._window)
 
-    def step(self, rt_prediction, measurement=None):
-        if measurement is not None:
-            self._window.append(measurement)
-        elif self._window:
-            # No reading this step: repeat the last known value
-            self._window.append(self._window[-1])
-        # else: window still empty — leave it alone
+    def step(self, rt_prediction, measurement=None, is_only_update=False):
+        if rt_prediction is not None:
+            rt_prediction = float(rt_prediction)
+            if measurement is not None:
+                measurement = float(measurement)
+                if is_only_update == True and rt_prediction == 404 and measurement == 404:
+                    # Clean the window
+                    #self._window = deque(maxlen=self.window_size)
+                    default = -300
+                    measurement = float(default)
+                    self._window.append(measurement)
 
-        values = list(self._window) + [rt_prediction]
-        return sum(values) / len(values)
+                else:
+                    self._window.append(measurement)
+            elif self._window:
+                # No reading this step: repeat the last known value
+                self._window.append(self._window[-1])
+            # else: window still empty — leave it alone
+
+            values = list(self._window) + [rt_prediction]
+            if is_only_update == False:
+                print(f"    Given the following Filter Values: {values}, we found:")
+            return sum(values) / len(values)
+        else:
+            return 0
